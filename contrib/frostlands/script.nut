@@ -40,7 +40,7 @@ print("Loading Frostlands overhauled")
 ::sprPX <- newSprite("contrib/frostlands/gfx/NPC/pix.png", 18, 16, 0, 0, 9, 16)
 ::sprP <- newSprite("contrib/frostlands/gfx/NPC/placeholder.png", 37, 51, 0, 0, 16, 51)
 ::sprTheo <- newSprite("contrib/frostlands/gfx/NPC/Theo.png", 21, 47, 0, 0, 16, 51)
-::sprMPlayer <- newSprite("contrib/frostlands/gfx/NPC/minetest-player.png", 16, 33, 0, 0, 16, 51)
+::sprMPlayer <- newSprite("contrib/frostlands/gfx/NPC/minetest-player.png", 16, 33, 0, 0, 8, 33)
 ::sprPolyman <- newSprite("contrib/frostlands/gfx/NPC/polyman.png", 37, 51, 0, 0, 16, 51)
 
 //OG style
