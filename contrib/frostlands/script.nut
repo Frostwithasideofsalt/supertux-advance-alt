@@ -26,6 +26,7 @@ print("Loading Frostlands overhauled")
 ::bgFtropic2 <- newSprite("contrib/frostlands/gfx/BG/TropicalFsun.png", 720, 240, 0, 0, 0, 0)
 ::bgFtropic3 <- newSprite("contrib/frostlands/gfx/BG/TropicalF2.png", 720, 240, 0, 0, 0, 0)
 ::bgFtropic0 <- newSprite("contrib/frostlands/gfx/BG/TropicalF0.png", 720, 240, 0, 0, 0, 0)
+::bgFtropicM <- newSprite("contrib/frostlands/gfx/BG/tropics-mountans.png", 720, 240, 0, 0, 0, 0)
 
 //NPCS
 ::sprTinyFireGuinb <- newSprite("contrib/frostlands/gfx/NPC/ash.png", 13, 23, 0, 0, 6, 23)
@@ -138,6 +139,17 @@ print("Loading Frostlands overhauled")
 	}
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgFtropic3, 0, ((-camx / 10) % 720) + (i * 720), (screenH() / 2) - 80)
+	}
+	
+}
+	
+::dbgtropicS <- function() {
+	drawSprite(bgFtropic2, 0, 0, (screenH() / 2) - 120)
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgFtropic0, 0, ((-camx / 32) % 720) + (i * 720), (screenH() / 2) - 120)
+	}
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgFtropicM, 0, ((-camx / 10) % 720) + (i * 720), (screenH() / 2) - 80)
 	}
 	
 }

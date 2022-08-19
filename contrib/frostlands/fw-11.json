@@ -612,7 +612,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgtropicf\nsongPlay(musAirship)\ngfxOverrideFL()"
+         "value":"drawBG = dbgtropicS\nsongPlay(musAirship)\ngfxOverrideFL()"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
