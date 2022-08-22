@@ -22,6 +22,15 @@ print("Loading Frostlands overhauled")
 ::bgRace2 <- newSprite("contrib/frostlands/gfx/BG/tuxracer2.png", 520, 240, 0, 0, 0, 0)
 ::bgError <- newSprite("contrib/frostlands/gfx/BG/glitch.png", 1140, 240, 0, 0, 0, 0)
 ::sprC1 <- newSprite("contrib/frostlands/gfx/effects/star1.png", 7, 7, 0, 0, 3, 3)
+//snow
+::bgAuroraHill <- newSprite("contrib/frostlands/gfx/BG/hills-aurora1.png", 720, 240, 0, 0, 0, 0)
+::bgAuroraHill1 <- newSprite("contrib/frostlands/gfx/BG/hills-aurora2.png", 720, 240, 0, 0, 0, 0)
+::bgStarHill <- newSprite("contrib/frostlands/gfx/BG/night-hill.png", 720, 240, 0, 0, 0, 0)
+::bgSnowstars <- newSprite("contrib/frostlands/gfx/BG/Snow-stars.png", 720, 240, 0, 0, 0, 0)
+::bgSnowstars2 <- newSprite("contrib/frostlands/gfx/BG/Snow-stars2.png", 720, 240, 0, 0, 0, 0)
+//forest
+
+//tropic
 ::bgFtropic <- newSprite("contrib/frostlands/gfx/BG/TropicalF.png", 720, 240, 0, 0, 0, 0)
 ::bgFtropic2 <- newSprite("contrib/frostlands/gfx/BG/TropicalFsun.png", 720, 240, 0, 0, 0, 0)
 ::bgFtropic3 <- newSprite("contrib/frostlands/gfx/BG/TropicalF2.png", 720, 240, 0, 0, 0, 0)
@@ -98,7 +107,13 @@ print("Loading Frostlands overhauled")
 
 ::dbgAuroraF <- function() {
 	for(local i = 0; i < 2; i++) {
-		drawSprite(bgAuroraALT, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
+		drawSprite(bgSnowstars, 0, ((-camx / 16) % 720) + (i * 720), screenH() - 240)
+	}
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgAuroraHill1, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
+	}
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgAuroraHill, 0, ((-camx / 6) % 720) + (i * 720), screenH() - 240)
 	}
 }
 
@@ -116,7 +131,10 @@ print("Loading Frostlands overhauled")
 
 ::dbgNightalt <- function() {
 	for(local i = 0; i < 2; i++) {
-		drawSprite(bgNightAlt, 0, ((-camx / 8) % 720) + (i * 720), (screenH() / 2) - 120)
+		drawSprite(bgSnowstars2, 0, ((-camx / 16) % 720) + (i * 720), (screenH() / 2) - 120)
+	}
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgStarHill, 0, ((-camx / 8) % 720) + (i * 720), (screenH() / 2) - 120)
 	}
 }
 

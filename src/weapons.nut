@@ -20,6 +20,7 @@
 	piercing = 0
 	owner = 0
 	alignment = 0 //0 is neutral, 1 is player, 2 is enemy
+	box = false //If the attack comes from a box
 
 	constructor(_x, _y, _arr = null){
 		base.constructor(_x, _y, _arr)
@@ -39,6 +40,22 @@
 ::MeleeHit <- class extends WeaponEffect {
 	element = "normal"
 	timer = 4
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+		shape = Rec(x, y, 4, 4, 0)
+	}
+
+	function run() {
+		timer--
+		if(timer == 0) deleteActor(id)
+	}
+}
+
+::BoxHit <- class extends WeaponEffect {
+	element = "normal"
+	timer = 4
+	box = true
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
