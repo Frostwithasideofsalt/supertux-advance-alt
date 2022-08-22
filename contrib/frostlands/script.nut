@@ -1,5 +1,6 @@
+
 //asset stuffs
-print("Loading Frostlands overhauled")
+print("Loading Frostlands overhauled PT2")
 
 //music
 
@@ -26,6 +27,8 @@ print("Loading Frostlands overhauled")
 ::bgAuroraHill <- newSprite("contrib/frostlands/gfx/BG/hills-aurora1.png", 720, 240, 0, 0, 0, 0)
 ::bgAuroraHill1 <- newSprite("contrib/frostlands/gfx/BG/hills-aurora2.png", 720, 240, 0, 0, 0, 0)
 ::bgStarHill <- newSprite("contrib/frostlands/gfx/BG/night-hill.png", 720, 240, 0, 0, 0, 0)
+::bgStarHill2 <- newSprite("contrib/frostlands/gfx/BG/night-hill2.png", 720, 240, 0, 0, 0, 0)
+::bgSnowday <- newSprite("contrib/frostlands/gfx/BG/Snow-day.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowstars <- newSprite("contrib/frostlands/gfx/BG/Snow-stars.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowstars2 <- newSprite("contrib/frostlands/gfx/BG/Snow-stars2.png", 720, 240, 0, 0, 0, 0)
 //forest
@@ -107,13 +110,13 @@ print("Loading Frostlands overhauled")
 
 ::dbgAuroraF <- function() {
 	for(local i = 0; i < 2; i++) {
-		drawSprite(bgSnowstars, 0, ((-camx / 16) % 720) + (i * 720), screenH() - 240)
+		drawSprite(bgSnowday, 0, ((-camx / 16) % 720) + (i * 720), screenH() - 240)
 	}
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgAuroraHill1, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
 	}
 	for(local i = 0; i < 2; i++) {
-		drawSprite(bgAuroraHill, 0, ((-camx / 6) % 720) + (i * 720), screenH() - 240)
+		drawSprite(bgAuroraHill, 0, ((-camx / 4) % 720) + (i * 720), screenH() - 240)
 	}
 }
 
@@ -135,6 +138,9 @@ print("Loading Frostlands overhauled")
 	}
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgStarHill, 0, ((-camx / 8) % 720) + (i * 720), (screenH() / 2) - 120)
+	}
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgStarHill2, 0, ((-camx / 6) % 720) + (i * 720), (screenH() / 2) - 120)
 	}
 }
 
