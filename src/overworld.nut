@@ -56,6 +56,16 @@
 			}
 		}
 
+		if(actor.rawin("WorldIcon")) {//Find what level was landed on
+			foreach(i in actor["WorldIcon"]) {
+				if(hitTest(shape, i.shape)) {
+					level = i.world
+					onstage = true
+					break
+				}
+			}
+		}
+
 		if(onstage) {
 			if((x - 8) % 16 == 0) hspeed = 0
 			if((y - 8) % 16 == 0) vspeed = 0
@@ -308,6 +318,30 @@
 	function _typeof() { return "WorldIcon" }
 }
 
+::LockIcon <- class extends PhysAct {
+	key = ""
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y, 8, 8, 0)
+		key = _arr
+	}
+
+	function run() {
+		if(game.completed.rawin(key)) {
+			tileSetSolid(x, y, 1)
+			deleteActor(id)
+		}
+		else {
+			tileSetSolid(x, y, 0)
+			drawSprite(sprLevels, 5, x - camx, y - camy)
+		}
+	}
+
+	function _typeof() { return "LockIcon" }
+}
+
 ::startOverworld <- function(world) {
 	//Clear actors and start creating new ones
 	gvFadeInTime = 255
@@ -332,7 +366,7 @@
 	local actset = -1
 	local tilef = 0
 	for(local i = 0; i < gvMap.tileset.len(); i++) {
-		if(spriteName(gvMap.tileset[i]) == "actors.png")
+		if(spriteName(gvMap.tileset[i]) == "overactors.png")
 		{
 			actset = gvMap.tileset[i]
 			tilef = gvMap.tilef[i]
@@ -388,6 +422,10 @@
 				local c = actor[newActor(TownIcon, i.x + 8, i.y - 8)]
 				c.level = i.name
 				break
+
+			case 4:
+				newActor(LockIcon, i.x + 8, i.y - 8, i.name)
+				break
 		}
 	}
 
@@ -440,6 +478,7 @@
 	setDrawTarget(gvScreen)
 
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "bg")
+	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "mg")
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "fg")
 	if(debug) gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "solid")
 
@@ -448,6 +487,7 @@
 	if(actor.rawin("StageIcon")) foreach(i in actor["StageIcon"]) i.run()
 	if(actor.rawin("WorldIcon")) foreach(i in actor["WorldIcon"]) i.run()
 	if(actor.rawin("TownIcon")) foreach(i in actor["TownIcon"]) i.run()
+	if(actor.rawin("LockIcon")) foreach(i in actor["LockIcon"]) i.run()
 	if(actor.rawin("Trigger")) foreach(i in actor["Trigger"]) i.run()
 	if(gvPlayer) gvPlayer.run()
 

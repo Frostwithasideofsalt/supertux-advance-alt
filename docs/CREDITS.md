@@ -68,7 +68,7 @@ UbuntuJackson - UFO
 
 [Hugues Ross](https://content.minetest.net/users/Hugues%20Ross/) - RPG16
 
-[Crystalized Sun]() - Mr. and Ms. Snowball, Snow Jumpy
+[Crystalized Sun]() - Mr. and Ms. Snowball, Snow Jumpy, Spiked Snowball
 
 ## Sounds
 
@@ -93,6 +93,8 @@ Lukas Nystrand - Chippdisko
 [Trex0n](https://opengameart.org/users/trex0n) - Peace At Last (Overworld)
 
 [Ted Kerr](https://opengameart.org/users/wolfgang) - 8bit Upbeat Town
+
+[jkfite01](https://opengameart.org/users/jkfite01) - Peaceful Village
 
 [Joth](https://opengameart.org/users/joth) - Black Diamond, Emotional Deluge
 

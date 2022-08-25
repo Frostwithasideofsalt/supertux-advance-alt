@@ -145,6 +145,7 @@
 ::sprTuckles <- newSprite("res/gfx/tuckles.png", 18, 34, 0, 0, 8, 34)
 ::sprGaruda <- newSprite("res/gfx/garuda.png", 35, 36, 0, 0, 17, 36)
 ::sprKelvinNPC <- newSprite("res/gfx/npc-kelvin.png", 32, 32, 0, 0, 16, 32)
+::sprDuke <- newSprite("res/gfx/duke.png", 32, 32, 0, 0, 16, 32)
 
 
 //Enemies
@@ -212,6 +213,13 @@
 ::defSnowBounce <- sprSnowBounce
 ::sprSnowJumpy <- newSprite("res/gfx/og-jumpy.png", 16, 25, 0, 0, 8, 11)
 ::defSnowJumpy <- sprSnowJumpy
+::sprSpikeCap <- newSprite("res/gfx/spikecap.png", 16, 17, 0, 0, 8, 9)
+::defSpikeCap <- sprSpikeCap
+::sprSnowSpike <- newSprite("res/gfx/snowspike.png", 20, 20, 0, 0, 10, 12)
+::defSnowSpike <- sprSnowSpike
+::sprSnowFly <- newSprite("res/gfx/snowfly.png", 15, 19, 0, 0, 7, 8)
+::defSnowFly <- sprSnowFly
+
 
 //Bosses
 ::sprNolok <- newSprite("res/gfx/nolok.png", 64, 64, 0, 0, 32, 40)
@@ -394,6 +402,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::musretro2<- "res/mus/retro-2.ogg"
 ::musBoss <- "res/mus/boss.ogg"
 ::musBossIntro <- "res/mus/boss-intro.ogg"
+::musGrassOverworld <- "res/mus/peaceful-village.ogg"
 
 //Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/mus/invincible.ogg")
@@ -479,6 +488,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprSawblade = defSawblade
 	sprLivewire = defLivewire
 	sprBlazeborn = defBlazeborn
+	sprSpikeCap = defSpikeCap
 
 	sprNolok = defNolok
 	sprYeti = defYeti
@@ -524,10 +534,13 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 }
 
 ::gfxEnemySnow <- function() {
+	sprBoxItem = sprBoxIce
 	sprDeathcap = sprMrSnowball
 	sprGradcap = sprMsSnowball
 	sprOrangeBounce = sprSnowBounce
 	sprJumpy = sprSnowJumpy
+	sprSpikeCap = sprSnowSpike
+	sprFlyAmanita = sprSnowFly
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)
