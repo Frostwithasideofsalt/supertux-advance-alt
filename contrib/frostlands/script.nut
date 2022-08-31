@@ -29,8 +29,10 @@ print("Loading Frostlands overhauled PT2")
 ::bgStarHill <- newSprite("contrib/frostlands/gfx/BG/night-hill.png", 720, 240, 0, 0, 0, 0)
 ::bgStarHill2 <- newSprite("contrib/frostlands/gfx/BG/night-hill2.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowday <- newSprite("contrib/frostlands/gfx/BG/Snow-day.png", 720, 240, 0, 0, 0, 0)
-::bgSnowstars <- newSprite("contrib/frostlands/gfx/BG/Snow-stars.png", 720, 240, 0, 0, 0, 0)
+::bgSnowDusk <- newSprite("contrib/frostlands/gfx/BG/Snow-dusk.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowstars2 <- newSprite("contrib/frostlands/gfx/BG/Snow-stars2.png", 720, 240, 0, 0, 0, 0)
+::bgPlainHill <- newSprite("contrib/frostlands/gfx/BG/plain-hill.png", 720, 240, 0, 0, 0, 0)
+::bgPlainill2 <- newSprite("contrib/frostlands/gfx/BG/plain-hill1.png", 720, 240, 0, 0, 0, 0)
 //forest
 
 //tropic
@@ -128,7 +130,13 @@ print("Loading Frostlands overhauled PT2")
 
 ::dbgSnowPlainF <- function() {
 	for(local i = 0; i < 2; i++) {
-		drawSprite(bgSnowPlainALT, 0, ((-camx / 8) % 720) + (i * 720), (screenH() / 2) - 120)
+		drawSprite(bgSnowDusk, 0, ((-camx / 16) % 720) + (i * 720), (screenH() / 2) - 120)
+	}
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgPlainill2, 0, ((-camx / 8) % 720) + (i * 720), (screenH() / 2) - 120)
+	}
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgPlainHill, 0, ((-camx / 6) % 720) + (i * 720), (screenH() / 2) - 120)
 	}
 }
 
