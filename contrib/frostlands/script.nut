@@ -67,6 +67,7 @@ print("Loading Frostlands overhauled PT2")
 ::sprItemBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-itembox.png", 16, 16, 0, 0, 0, 0)
 ::sprSnowballOG <- newSprite("contrib/frostlands/gfx/obj/fl-snowball.png", 16, 16, 0, 0, 8, 8)
 ::sprStarOG <- newSprite("contrib/frostlands/gfx/obj/fl-star.png", 16, 16, 0, 0, 8, 8)
+::sprDarkOG <- newSprite("contrib/frostlands/gfx/obj/fl-darknyan.png", 16, 16, 0, 0, 8, 8)
 ::sprWoodBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-woodbox.png", 16, 16, 0, 0, 0, 0)
 ::sprWoodChunksOG <- newSprite("contrib/frostlands/gfx/obj/fl-woodchunks.png", 8, 8, 0, 0, 4, 4)
 ::sprCoinN1 <- newSprite("contrib/frostlands/gfx/obj/coin-n1.png", 16, 16, 0, 0, 8, 8)
@@ -89,6 +90,7 @@ print("Loading Frostlands overhauled PT2")
 	sprFlowerIce = sprFlowerIceOG
 	sprEarthShell = sprEarthShellOG
 	sprStar = sprStarOG
+	sprDarkStar = sprDarkOG
 
 	sprBoxInfo = sprInfoBoxOG
 	sprBoxItem = sprItemBoxOG
