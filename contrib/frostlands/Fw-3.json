@@ -2631,7 +2631,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgSnowPlainF\nsongPlay(musDisko)\ngfxOverrideFL()"
+         "value":"drawBG = dbgSnowPlainF\nsongPlay(musDisko)\ngfxOverrideFL()\ngvLightTarget = 0xffffffff"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.8.5",
