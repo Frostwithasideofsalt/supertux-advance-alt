@@ -35,6 +35,8 @@ print("Loading Frostlands overhauled PT2")
 ::bgPlainill2 <- newSprite("contrib/frostlands/gfx/BG/plain-hill1.png", 720, 240, 0, 0, 0, 0)
 //forest
 ::bgForestday <- newSprite("contrib/frostlands/gfx/BG/Forest-1.png", 720, 240, 0, 0, 0, 0)
+::bgForesttree1<- newSprite("contrib/frostlands/gfx/BG/Forest-2.png", 720, 240, 0, 0, 0, 0)
+::bgForesttree2 <- newSprite("contrib/frostlands/gfx/BG/Forest-3.png", 720, 240, 0, 0, 0, 0)
 //tropic
 ::bgFtropic <- newSprite("contrib/frostlands/gfx/BG/TropicalF.png", 720, 240, 0, 0, 0, 0)
 ::bgFtropic2 <- newSprite("contrib/frostlands/gfx/BG/TropicalFsun.png", 720, 240, 0, 0, 0, 0)
@@ -117,10 +119,10 @@ print("Loading Frostlands overhauled PT2")
 		drawSprite(bgForestday, 0, ((-camx / 16) % 720) + (i * 720), screenH() - 240)
 	}
 	for(local i = 0; i < 2; i++) {
-		drawSprite(bgAuroraHill1, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
+		drawSprite(bgForesttree2, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
 	}
 	for(local i = 0; i < 2; i++) {
-		drawSprite(bgAuroraHill, 0, ((-camx / 4) % 720) + (i * 720), screenH() - 240)
+		drawSprite(bgForesttree1 0, ((-camx / 4) % 720) + (i * 720), screenH() - 240)
 	}
 }
 
