@@ -2806,6 +2806,18 @@
                  "width":16,
                  "x":4768,
                  "y":480
+                }, 
+                {
+                 "class":"",
+                 "gid":222,
+                 "height":16,
+                 "id":1544,
+                 "name":"PipesC",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":32,
+                 "y":304
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2814,7 +2826,7 @@
          "y":0
         }],
  "nextlayerid":20,
- "nextobjectid":1544,
+ "nextobjectid":1546,
  "orientation":"orthogonal",
  "properties":[
         {

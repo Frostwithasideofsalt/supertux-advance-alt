@@ -77,7 +77,7 @@
 		
 	"devcom" : {
 		"chance" :
-		"FrostC:The first level made for Frostlands. And tbh, it's pretty good, even compared to many of the recent levels.",
+		"FrostC:The first level made for Frostlands. And it's pretty good, even compared to many of the recent levels.",
 		"roots" :
 		"FrostC: This level is a combo of a bunch levels from the original Supertux. Also, random fact. This level was created after all the other ones on the purple ice island.",
 		"distaste" :
@@ -91,6 +91,14 @@
 		"skillissue" :
 		"FrostC: yes, it is possible to beat this level without getting hurt. I've done it a few times ;)",
 		"lazy" :
-		"FrostC: Im gonna let you in on a secret... I don't like making levels with the forest tiles. So I made a ice level for the forest world. So yeah, take that as you will."
+		"FrostC: Im gonna let you in on a secret... I don't like making levels with the forest tiles. So I made a ice level for the forest world. So yeah, take that as you will.",
+		"PipesC" :
+		"FrostC: If you are able to, please turn on lighting for this level. It will let you see the very cool and awesome pipe transitions I made. I'm very happy how they look.",
+		"oceanC" :
+		"FrostC: Don't really have anything to say about this level, besides that I think it looks cool.",
+		"Pipes" :
+		"FrostC: If you are able to, please turn on lighting for this level. It will let you see the very cool and awesome pipe transitions I made. I'm very happy how they look.",
+		"lololol" :
+		"FrostC: Made this level due to someone saying they wanted to see the air feather be used in Frostlands."
 	}
 }
