@@ -35,8 +35,8 @@ print("Loading Frostlands overhauled PT2")
 ::bgPlainill2 <- newSprite("contrib/frostlands/gfx/BG/plain-hill1.png", 720, 240, 0, 0, 0, 0)
 //forest
 ::bgForestday <- newSprite("contrib/frostlands/gfx/BG/Forest-1.png", 720, 240, 0, 0, 0, 0)
-::bgForesttree1<- newSprite("contrib/frostlands/gfx/BG/Forest-2.png", 720, 240, 0, 0, 0, 0)
-::bgForesttree2 <- newSprite("contrib/frostlands/gfx/BG/Forest-3.png", 720, 240, 0, 0, 0, 0)
+::bgForesttree1<- newSprite("contrib/frostlands/gfx/BG/forest-2.png", 720, 240, 0, 0, 0, 0)
+::bgForesttree2 <- newSprite("contrib/frostlands/gfx/BG/forest-3.png", 720, 240, 0, 0, 0, 0)
 //tropic
 ::bgFtropic <- newSprite("contrib/frostlands/gfx/BG/TropicalF.png", 720, 240, 0, 0, 0, 0)
 ::bgFtropic2 <- newSprite("contrib/frostlands/gfx/BG/TropicalFsun.png", 720, 240, 0, 0, 0, 0)
@@ -109,7 +109,7 @@ print("Loading Frostlands overhauled PT2")
 		sprCoin = sprCoinN1
 		sprCoin5 = sprCoinN5
 		sprCoin10 = sprCoinN10
-		} 
+		}
 }
 
 //background shiz
@@ -188,9 +188,9 @@ print("Loading Frostlands overhauled PT2")
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgFtropic3, 0, ((-camx / 10) % 720) + (i * 720), (screenH() / 2) - 80)
 	}
-	
+
 }
-	
+
 ::dbgtropicS <- function() {
 	drawSprite(bgFtropic2, 0, 0, (screenH() / 2) - 120)
 	for(local i = 0; i < 2; i++) {
@@ -199,7 +199,7 @@ print("Loading Frostlands overhauled PT2")
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgFtropicM, 0, ((-camx / 10) % 720) + (i * 720), (screenH() / 2) - 80)
 	}
-	
+
 }
 
 ::TNTALT <- class extends Actor {
@@ -322,9 +322,15 @@ print("Loading Frostlands overhauled PT2")
 
 	function run() {
 		base.run()
-		
 
-		
+		if(gvPlayer && abs(x - gvPlayer.x) <= 120) {
+			if(getFrames() % 120 == 0){
+				local c = actor[newActor(CannonBob, x - 4, y - 4)]
+							c.hspeed = ((gvPlayer.x - x) / 48)
+							local d = (y - gvPlayer.y) / 64
+			}
+		}
+
 		if(active) {
 			if(!moving) if(gvPlayer) if(x > gvPlayer.x) {
 				flip = true
