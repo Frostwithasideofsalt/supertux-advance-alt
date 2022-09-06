@@ -2265,7 +2265,7 @@
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
 		}
-		squish = true
+		squish = false
 
 	}
 
@@ -2299,11 +2299,11 @@
 			newActor(IceChunks, x, y)
 		}
 		if(burnt) {
-			burnt = true
+			burnt = false
 		}
 	}
 
-	function hurtIce() { frozen = 120 }
+	function hurtIce() { frozen = 0 }
 }
 
 ::Blazeborn <- class extends Enemy {
@@ -2460,8 +2460,7 @@
 	squishTime = 0.0
 	smart = false
 	moving = false
-	touchDamage = 2.0
-	element = "toxic"
+	touchDamage = 4.0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
@@ -2470,9 +2469,8 @@
 		smart = _arr
 	}
 
-	function physics() {}
-	function animation() {}
 	function routine() {}
+	function animation() {}
 
 	function run() {
 		base.run()
@@ -2488,7 +2486,7 @@
 				if(placeFree(x, y + vspeed)) y += vspeed
 				else vspeed /= 2
 
-				if(y > gvMap.h + 8) deleteActor(id)
+				if(y > gvMap.h + 8) die()
 
 				if(!frozen) {
 					if(flip) {
@@ -2531,7 +2529,7 @@
 					if(smart) drawSpriteEx(sprWildcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 					else drawSpriteEx(sprWildcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
-					if(frozen <= 70) {
+					if(frozen <= 120) {
 					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
 						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 					}
@@ -2540,8 +2538,8 @@
 				else {
 					//Delete ice block
 					if(icebox != -1) {
-						mapDeleteSolid(icebox)
 						newActor(IceChunks, x, y)
+						mapDeleteSolid(icebox)
 						icebox = -1
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
@@ -2554,12 +2552,12 @@
 			}
 			else {
 				squishTime += 0.025
-				if(squishTime >= 1) deleteActor(id)
+				if(squishTime >= 1) die()
 				if(smart) drawSpriteEx(sprWildcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				else drawSpriteEx(sprWildcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 
-			shape.setPos(x, y)
+			if(!squish) shape.setPos(x, y)
 			setDrawColor(0xff0000ff)
 			if(debug) shape.draw()
 		}
@@ -2567,79 +2565,90 @@
 
 	function hurtPlayer() {
 		if(squish) return
-		gvPlayer.hurt = 4
+		base.hurtPlayer()
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
+
 		if(_blast) {
-			hurtBlast()
-			return
-		}
-		if(element == "fire") {
-			print("He killed me with fire!")
-			hurtFire()
-			return
-		}
-		if(element == "ice") {
-			hurtIce()
+			hurtblast()
 			return
 		}
 
+		if(_element == "fire") {
+			newActor(Flame, x, y - 1)
+			die()
+			playSound(sndFlame, 0)
+
+			if(randInt(30) == 0) {
+				local a = actor[newActor(MuffinRed, x, y)]
+				a.vspeed = -2
+			}
+			return
+		}
+
+		if(_element == "ice") {
+			frozen = 600
+			return
+		}
 
 		if(gvPlayer.rawin("anSlide")) {
-			if(gvPlayer.anim == gvPlayer.anSlide) {
-				local c = newActor(DeadNME, x, y)
+			if(gvPlayer.anim == gvPlayer.anSlide && hitTest(shape, gvPlayer.shape)) {
 				gvPlayer.hurt = 1
-				actor[c].sprite = sprWildcap
-				actor[c].vspeed = -abs(gvPlayer.hspeed)
+				local c = newActor(DeadNME, x, y)
+				if(smart) actor[c].sprite = sprWildcap
+				else actor[c].sprite = sprWildcap
+				actor[c].vspeed = min(-fabs(gvPlayer.hspeed), -4)
 				actor[c].hspeed = (gvPlayer.hspeed / 16)
 				actor[c].spin = (gvPlayer.hspeed * 7)
 				actor[c].angle = 180
-				deleteActor(id)
+				die()
 				playSound(sndKick, 0)
-			}
-			else if(_stomp) {
-				if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
-				else {
-					gvPlayer.vspeed = -4.0
-					playSound(sndSquish, 0)
-				}
-				if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
-					gvPlayer.anim = gvPlayer.anJumpU
-					gvPlayer.frame = gvPlayer.anJumpU[0]
-				}
+				return
 			}
 		}
-		else if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
-		else gvPlayer.vspeed = -4.0
-		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
-			gvPlayer.anim = gvPlayer.anJumpU
-			gvPlayer.frame = gvPlayer.anJumpU[0]
-		}
+
+		if(!_stomp) {
+			local c = newActor(DeadNME, x, y)
+			if(smart) actor[c].sprite = sprWildcap
+			else actor[c].sprite = sprWildcap
+			actor[c].vspeed = -4.0
+			actor[c].spin = 4
+			actor[c].angle = 180
+			die()
+			popSound(sndKick, 0)
+
+			if(randInt(30) == 0) {
+				local a = actor[newActor(MuffinRed, x, y)]
+				a.vspeed = -2
+			}
+		} else popSound(sndSquish, 0)
 
 		squish = true
+		blinking = 120
 	}
 
-	function hurtBlast() {
+	function hurtblast() {
 		local c = newActor(DeadNME, x, y)
-		actor[c].sprite = sprWildcap
+		if(smart) actor[c].sprite = sprWildcap
+		else actor[c].sprite = sprWildcap
 		actor[c].vspeed = -4
 		actor[c].hspeed = (4 / 16)
 		actor[c].spin = (4 * 7)
 		actor[c].angle = 180
-		deleteActor(id)
+		die()
 		playSound(sndKick, 0)
 		if(icebox != -1) mapDeleteSolid(icebox)
-
 	}
 
 	function hurtFire() {
 		newActor(Flame, x, y - 1)
-		deleteActor(id)
+		die()
+		stopSound(sndFlame)
 		playSound(sndFlame, 0)
 
-		if(randInt(40) == 0) {
+		if(randInt(30) == 0) {
 			local a = actor[newActor(MuffinRed, x, y)]
 			a.vspeed = -2
 		}
@@ -2649,8 +2658,6 @@
 
 	function _typeof() { return "Deathcap" }
 }
-
-
 
 
 
