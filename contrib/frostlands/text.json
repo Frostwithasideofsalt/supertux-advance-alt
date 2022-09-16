@@ -45,6 +45,8 @@
 		"The snow here is like, all purple and stuff... super weird. Also be sure to talk to sam, he wants to show you something.",
 		"Sam-A" :
 		"Oh- hello there. For some reason the normally peacefull frostlands have become purple, and much more dangerous. So I would suggest taking the muffin from that block, to help you out.",
+		"Player-A" :
+		"Joke here",
 		"fire-A" :
 		"Hey, im the one managing the port at the moment. I don't have any boats, but I do have a few items for you.",
 		"fire-B" :
@@ -72,7 +74,9 @@
 		"slm" :
 		"May I offer you a cup of tea? No? Well that's too bad.",
 		"placeholder" :
-		"This is placeholder text"
+		"This is placeholder text",
+		"W-Baller" :
+		"wall baller                                                                                                                                                                     ?"
 		},
 		
 	"devcom" : {

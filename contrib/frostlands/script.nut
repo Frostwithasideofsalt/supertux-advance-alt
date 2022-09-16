@@ -59,6 +59,7 @@ print("Loading Frostlands overhauled PT2")
 ::sprTheo <- newSprite("contrib/frostlands/gfx/NPC/Theo.png", 21, 47, 0, 0, 16, 51)
 ::sprMPlayer <- newSprite("contrib/frostlands/gfx/NPC/minetest-player.png", 16, 33, 0, 0, 8, 33)
 ::sprPolyman <- newSprite("contrib/frostlands/gfx/NPC/polyman.png", 37, 51, 0, 0, 16, 51)
+::sprWallBaller <- newSprite("contrib/frostlands/gfx/NPC/wall-crawler.png", 32, 32, 0, 0, 16, 32)
 
 //OG style
 ::sprFlowerFireOG <- newSprite("contrib/frostlands/gfx/obj/fl-fireflower.png", 16, 16, 0, 0, 8, 8)
@@ -301,7 +302,7 @@ print("Loading Frostlands overhauled PT2")
 
 //TEMP
 
-::Walter <- class extends Enemy {
+::Blitz <- class extends Enemy {
 	frame = 0.0
 	flip = false
 	squish = false
