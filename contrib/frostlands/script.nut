@@ -2,6 +2,10 @@
 //asset stuffs
 print("Loading Frostlands overhauled PT2")
 
+//Enemy
+::sprBlitz <- newSprite("contrib/frostlands/gfx/enemies/mrblitz.png", 16, 16, 0, 0, 8, 9)
+::sprBlitz2 <- newSprite("contrib/frostlands/gfx/enemies/smartblitz.png", 16, 16, 0, 0, 8, 9)
+
 //music
 
 ::musfreeze <- "contrib/frostlands/music/freezingpoint.ogg"
@@ -324,7 +328,7 @@ print("Loading Frostlands overhauled PT2")
 	function run() {
 		base.run()
 
-		if(gvPlayer && abs(x - gvPlayer.x) <= 120) {
+		if(gvPlayer && abs(x - gvPlayer.x) <= 240) {
 			if(getFrames() % 120 == 0){
 				local c = actor[newActor(CannonBob, x - 4, y - 4)]
 							c.hspeed = ((gvPlayer.x - x) / 48)
@@ -403,15 +407,15 @@ print("Loading Frostlands overhauled PT2")
 					}
 
 					//Draw
-					if(smart) drawSpriteEx(sprGradcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprDeathcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					if(smart) drawSpriteEx(sprBlitz2, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					else drawSpriteEx(sprBlitz, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
 				squishTime += 0.025
 				if(squishTime >= 1) die()
-				if(smart) drawSpriteEx(sprGradcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				if(smart) drawSpriteEx(sprBlitz2, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSpriteEx(sprBlitz, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 
 			if(!squish) shape.setPos(x, y)
@@ -446,15 +450,15 @@ print("Loading Frostlands overhauled PT2")
 		}
 
 		if(_element == "ice") {
-			frozen = 600
+			frozen = 0
 			return
 		}
 
 		if(gvPlayer.rawin("anSlide")) {
 			if(gvPlayer.anim == gvPlayer.anSlide && hitTest(shape, gvPlayer.shape)) {
 				local c = newActor(DeadNME, x, y)
-				if(smart) actor[c].sprite = sprGradcap
-				else actor[c].sprite = sprDeathcap
+				if(smart) actor[c].sprite = sprBlitz
+				else actor[c].sprite = sprBlitz
 				actor[c].vspeed = min(-fabs(gvPlayer.hspeed), -4)
 				actor[c].hspeed = (gvPlayer.hspeed / 16)
 				actor[c].spin = (gvPlayer.hspeed * 7)
@@ -467,8 +471,8 @@ print("Loading Frostlands overhauled PT2")
 
 		if(!_stomp) {
 			local c = newActor(DeadNME, x, y)
-			if(smart) actor[c].sprite = sprGradcap
-			else actor[c].sprite = sprDeathcap
+			if(smart) actor[c].sprite = sprBlitz
+			else actor[c].sprite = sprBlitz
 			actor[c].vspeed = -4.0
 			actor[c].spin = 4
 			actor[c].angle = 180
@@ -487,8 +491,8 @@ print("Loading Frostlands overhauled PT2")
 
 	function hurtblast() {
 		local c = newActor(DeadNME, x, y)
-		if(smart) actor[c].sprite = sprGradcap
-		else actor[c].sprite = sprDeathcap
+		if(smart) actor[c].sprite = sprBlitz
+		else actor[c].sprite = sprBlitz
 		actor[c].vspeed = -4
 		actor[c].hspeed = (4 / 16)
 		actor[c].spin = (4 * 7)
@@ -510,7 +514,7 @@ print("Loading Frostlands overhauled PT2")
 		}
 	}
 
-	function hurtIce() { frozen = 600 }
+	function hurtIce() { frozen = 0 }
 
 	function _typeof() { return "Deathcap" }
 }
