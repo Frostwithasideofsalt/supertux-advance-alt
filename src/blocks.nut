@@ -91,7 +91,7 @@
 					deleteActor(id)
 					newActor(WoodChunks, x, y)
 					stopSound(sndBump)
-					playSound(sndBump, 0)
+					popSound(sndBump, 0)
 					tileSetSolid(x, y, oldsolid)
 					if(coins > 0) newActor(CoinEffect, x, y - 16)
 					fireWeapon(BoxHit, x, y - 8, 1, id)
@@ -102,7 +102,7 @@
 					coins--
 					newActor(CoinEffect, x, y - 16)
 					stopSound(sndBump)
-					playSound(sndBump, 0)
+					popSound(sndBump, 0)
 					fireWeapon(BoxHit, x, y - 8, 1, id)
 				}
 			}
@@ -147,7 +147,7 @@
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
 				newActor(IceChunks, x, y)
-				playSound(sndBump, 0)
+				popSound(sndBump, 0)
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
@@ -156,7 +156,7 @@
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
 				newActor(IceChunks, x, y)
-				playSound(sndBump, 0)
+				popSound(sndBump, 0)
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
@@ -165,7 +165,7 @@
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
 				newActor(IceChunks, x, y)
-				playSound(sndBump, 0)
+				popSound(sndBump, 0)
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 		}
@@ -173,18 +173,19 @@
 		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"])  if(hitTest(fireshape, i.shape) && (i.element == "fire" || i.blast) && !i.box) {
 			tileSetSolid(x, y, oldsolid)
 			deleteActor(id)
-			deleteActor(i.id)
+			i.piercing--
+			if(i.piercing == 0) deleteActor(i.id)
 
 			if(i.element == "fire") {
 				newActor(Poof, x, y)
 				stopSound(sndFlame)
-				playSound(sndFlame, 0)
+				popSound(sndFlame, 0)
 			}
 
 			if(i.blast) {
 				newActor(IceChunks, x, y)
 				stopSound(sndIceBreak)
-				playSound(sndIceBreak, 0)
+				popSound(sndIceBreak, 0)
 			}
 		}
 		drawSpriteZ(2, sprIceBlock, 0, x - 8 - camx, y - 8 - camy)
@@ -300,7 +301,7 @@
 			gvPlayer.vspeed = 0
 			full = false
 			vspeed = -2
-			playSound(sndBump, 0)
+			popSound(sndBump, 0)
 			fireWeapon(BoxHit, x, y - 8, 1, id)
 		}
 
@@ -341,7 +342,7 @@
 			gvPlayer.vspeed = 0
 			full = false
 			vspeed = -1
-			playSound(sndBump, 0)
+			popSound(sndBump, 0)
 		}
 
 		v += vspeed
@@ -380,7 +381,7 @@
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
 				gvPlayer.vspeed = 0
 				vspeed = -1
-				playSound(sndBump, 0)
+				popSound(sndBump, 0)
 				gvInfoBox = text
 			}
 
@@ -453,7 +454,7 @@
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
 				gvPlayer.vspeed = 1
 				vspeed = -1
-				playSound(sndBump, 0)
+				popSound(sndBump, 0)
 			}
 
 			shape.setPos(x, y - 1)
@@ -461,7 +462,7 @@
 				gvPlayer.vspeed = -4
 				if(getcon("jump", "hold")) gvPlayer.vspeed = -7.5
 				vspeed = 1
-				playSound(sndBump, 0)
+				popSound(sndBump, 0)
 			}
 
 			if(gvInfoBox == text) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) gvInfoBox = ""
@@ -492,7 +493,7 @@
 			game.check = true
 			game.chx = x
 			game.chy = y
-			playSoundChannel(sndBell, 0, 4)
+			popSound(sndBell, 0)
 			if(game.difficulty < 3) {
 				if(game.health < game.maxHealth) game.health += 4
 				else if(game.subitem == 0) game.subitem = 5
@@ -538,7 +539,7 @@
 			if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
 				gothit = true
 				stopSound(sndFizz)
-				playSound(sndFizz, 0)
+				popSound(sndFizz, 0)
 			}
 		}
 
@@ -701,7 +702,7 @@
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
 				newActor(Poof, x, y)
-				playSound(sndBump, 0)
+				popSound(sndBump, 0)
 				newActor(Darknyan, x, y - 16)
 			}
 
@@ -734,7 +735,7 @@
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
 				newActor(Poof, x, y)
-				playSound(sndBump, 0)
+				popSound(sndBump, 0)
 				newActor(MuffinBomb, x, y - 16)
 			}
 
@@ -809,7 +810,7 @@
 						deleteActor(id)
 						newActor(Poof, x, y)
 						stopSound(sndBump)
-						playSound(sndBump, 0)
+						popSound(sndBump, 0)
 					}
 					break
 				case 1:
@@ -818,7 +819,7 @@
 						deleteActor(id)
 						newActor(Poof, x, y)
 						stopSound(sndBump)
-						playSound(sndBump, 0)
+						popSound(sndBump, 0)
 					}
 					break
 				case 2:
@@ -827,7 +828,7 @@
 						deleteActor(id)
 						newActor(Poof, x, y)
 						stopSound(sndBump)
-						playSound(sndBump, 0)
+						popSound(sndBump, 0)
 					}
 					break
 				case 3:
@@ -836,7 +837,7 @@
 						deleteActor(id)
 						newActor(Poof, x, y)
 						stopSound(sndBump)
-						playSound(sndBump, 0)
+						popSound(sndBump, 0)
 					}
 					break
 			}
@@ -994,7 +995,7 @@
 		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
 			gvPlayer.vspeed = 0
 			vspeed = -2
-			playSound(sndBump, 0)
+			popSound(sndBump, 0)
 		}
 
 		v += vspeed
@@ -1004,5 +1005,46 @@
 			drawSpriteZ(2, getroottable()[game.characters[character]["doll"]], 0, x - camx, y - camy + v + 6)
 		}
 		else drawSpriteZ(2, sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
+	}
+}
+
+::Crumbler <- class extends Actor {
+	shape = 0
+	timer = 0
+	oldsolid = 0
+	broken = false
+	alpha = 1.0
+	wasStepped = false
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		oldsolid = tileGetSolid(x, y)
+		tileSetSolid(x, y, 1)
+		shape = Rec(x, y - 1, 8, 8, 0)
+	}
+
+	function run() {
+		if(!broken) {
+			if(alpha < 1.0) alpha += 0.1
+			if(gvPlayer && hitTest(shape, gvPlayer.shape) && !wasStepped) wasStepped = true
+			if(wasStepped) timer++
+			if(timer == 30) {
+				broken = true
+				tileSetSolid(x, y, oldsolid)
+				timer = 0
+				alpha = 0.0
+				if(sprCrumbleRock == sprCrumbleIce) newActor(IceChunks, x, y)
+			}
+			drawSpriteExZ(7, sprCrumbleRock, timer / 8, x - camx, y - camy, 0, 0, 1, 1, alpha)
+		}
+		else {
+			if(timer < 300) timer++
+			if(gvPlayer && !hitTest(shape, gvPlayer.shape) && timer == 300) {
+				broken = false
+				tileSetSolid(x, y, 1)
+				timer = 0
+				wasStepped = false
+			}
+		}
 	}
 }

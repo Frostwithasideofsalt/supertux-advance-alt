@@ -7,19 +7,18 @@
 ::gvInfoStep <- 0
 ::gvLangObj <- ""
 ::gvFadeInTime <- 255
+::gvVoidFog <- true
 
 ::mapActor <- {} //Stores references to all actors created by the map
 
-::startPlay <- function(level, newLevel = true, skipIntro = false)
-{
+::startPlay <- function(level, newLevel = true, skipIntro = false) {
 	if(!fileExists(level)) return
 
 	//Clear actors and start creating new ones
 	setFPS(60)
 	gvPlayer = false
 	gvBoss = false
-	actor.clear()
-	actlast = 0
+	deleteAllActors()
 	if(newLevel) {
 		game.health = game.maxHealth
 		game.levelCoins = 0
@@ -34,6 +33,8 @@
 		gvLastSong = ""
 		gfxReset()
 		gvFadeInTime = 255
+		gvNextLevel = ""
+		gvVoidFog = true
 	}
 
 	//Reset auto/locked controls
@@ -54,43 +55,39 @@
 	if(gvMap != 0) gvMap.del()
 	gvMap = Tilemap(level)
 
+	gvHorizon = gvMap.h
+
 	//Get tiles used to mark actors
 	local actset = -1
 	local tilef = 0
-	for(local i = 0; i < gvMap.tileset.len(); i++)
-	{
-		if(spriteName(gvMap.tileset[i]) == "actors.png")
-		{
+	for(local i = 0; i < gvMap.tileset.len(); i++) {
+		if(spriteName(gvMap.tileset[i]) == "actors.png") {
 			actset = gvMap.tileset[i]
 			tilef = gvMap.tilef[i]
 			break
 		}
 	}
-	if(actset == -1)
-	{
+	if(actset == -1) {
 		print("Map does not use actors.png. No actors to load.")
 		return
 	}
 
 	//Get layer for actors
 	local actlayer = -1
-	foreach(i in gvMap.data.layers)
-	{
-		if(i["type"] == "objectgroup" && i["name"] == "actor")
-		{
+	foreach(i in gvMap.data.layers) {
+		if(i["type"] == "objectgroup" && i["name"] == "actor") {
 			actlayer = i
 			break
 		}
 	}
-	if(actlayer == -1)
-	{
+
+	if(actlayer == -1) {
 		print("Map does not have an actor layer. No actors to load.")
 		return
 	}
 
 	//Start making actors
-	foreach(i in actlayer.objects)
-	{
+	foreach(i in actlayer.objects) {
 		//Tile actors
 		if(i.rawin("gid")) {
 			local n = i.gid - tilef
@@ -98,8 +95,7 @@
 
 			//Get the tile number and make an actor
 			//according to the image used in actors.png
-			switch(n)
-			{
+			switch(n) {
 				case 0:
 					//newActor(Tux, i.x, i.y - 16)
 					if(!gvPlayer && getroottable().rawin(game.playerChar)) {
@@ -438,6 +434,10 @@
 					c = newActor(EvilBlock, i.x + 8, i.y - 8)
 					break
 
+				case 76:
+					c = newActor(Crumbler, i.x + 8, i.y - 8)
+					break
+
 				case 77:
 					c = newActor(SpecialBall, i.x + 8, i.y - 8, i.name.tointeger())
 					break
@@ -476,6 +476,22 @@
 					c = newActor(SpikeCap, i.x + 8, i.y - 8, i.name)
 					actor[c].moving = true
 					break
+
+				case 89:
+					c = newActor(Tallcap, i.x + 8, i.y - 24, false)
+					break
+
+				case 90:
+					c = newActor(Tallcap, i.x + 8, i.y - 24, true)
+					break
+
+				case 91:
+					c = newActor(CaptainMorel, i.x + 8, i.y - 8)
+					break
+
+				case 92:
+					c = newActor(CoffeeCup, i.x + 8, i.y - 8)
+					break
 			}
 
 			if(typeof c == "integer") mapActor[i.id] <- c
@@ -486,8 +502,7 @@
 		if(i.rawin("polygon")) if(i.name != "") {
 			local arg = split(i.name, ",")
 			local n = arg[0]
-			if(getroottable().rawin(n))
-			{
+			if(getroottable().rawin(n)) {
 				//Create polygon to pass to object
 				local poly = []
 				for(local j = 0; j <= i.polygon.len(); j++) {
@@ -508,8 +523,7 @@
 		if(i.rawin("polyline")) if(i.name != "") {
 			local arg = split(i.name, ",")
 			local n = arg[0]
-			if(getroottable().rawin(n))
-			{
+			if(getroottable().rawin(n)) {
 				//Create polygon to pass to object
 				local poly = []
 				for(local j = 0; j < i.polyline.len(); j++) poly.push([i.x + i.polyline[j].x, i.y + i.polyline[j].y])
@@ -532,6 +546,7 @@
 				local obj = gvMap.data.layers[i].objects[j]
 				switch(lana) {
 					case "trigger":
+						if("polyline" in obj || "polygon" in obj || "ellipse" in obj) break
 						local c = newActor(Trigger, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
 						actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
 						actor[c].code = obj.name
@@ -539,23 +554,38 @@
 						actor[c].h = obj.height / 2
 						break
 					case "water":
+					if("polyline" in obj || "polygon" in obj || "ellipse" in obj) break
 						local c = newActor(Water, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
 						actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2) - 4, 5)
 						break
-					case "vmp":
-						local c = actor[newActor(PlatformV, obj.x + (obj.width / 2), obj.y + 8)]
-						c.w = (obj.width / 2)
-						c.r = obj.height - 16
-						c.init = 1
-						if(obj.name == "up") {
-							c.mode = 2
-							c.y = c.ystart + c.r
-						}
-						break
 					case "secret":
+						if("polyline" in obj || "polygon" in obj || "ellipse" in obj) break
 						local c = actor[newActor(SecretWall, obj.x, obj.y, obj.name)]
 						c.dw = obj.width / 16
 						c.dh = obj.height / 16
+						c.shape = Rec(c.x + (c.dw * 8), c.y + (c.dh * 8), -4 + (c.dw * 8), -4 + (c.dh * 8), 5)
+						break
+				}
+			}
+		}
+	}
+
+	//Search for secret wall joiners
+	for(local i = 0; i < gvMap.data.layers.len(); i++) {
+		if(gvMap.data.layers[i].type == "objectgroup") {
+			local lana = gvMap.data.layers[i].name //Layer name
+			for(local j = 0; j < gvMap.data.layers[i].objects.len(); j++) {
+				local obj = gvMap.data.layers[i].objects[j]
+				switch(lana) {
+					case "secret":
+						if(!("polyline" in obj || "polygon" in obj)) break
+						local poly = []
+
+						if("polyline" in obj) for(local j = 0; j < obj.polyline.len(); j++) poly.push([obj.x + obj.polyline[j].x, obj.y + obj.polyline[j].y])
+						else for(local j = 0; j < obj.polygon.len(); j++) poly.push([obj.x + obj.polygon[j].x, obj.y + obj.polygon[j].y])
+
+						local c = newActor(SecretJoiner, obj.x, obj.y, poly)
+						mapActor[obj.id] <- c
 						break
 				}
 			}
@@ -628,7 +658,7 @@
 	setDrawColor(0x000000ff)
 	drawRec(0, 0, screenW(), screenH(), true)
 
-	drawText(font2, (screenW() / 2) - (gvLangObj["level"][gvMap.name].len() * 4), 8, gvLangObj["level"][gvMap.name])
+	if(gvLangObj["level"].rawin(gvMap.name)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][gvMap.name].len() * 4), 8, gvLangObj["level"][gvMap.name])
 
 	local runAnim = getroottable()[game.playerChar].anRun
 	switch(game.weapon) {
@@ -681,8 +711,7 @@
 	if(getcon("jump", "press") || getcon("shoot", "press") || getcon("pause", "press") || getcon("accept", "press")) gvGameMode = gmPlay
 }
 
-::gmPlay <- function()
-{
+::gmPlay <- function() {
 	if(gvCamTarget == null && gvPlayer) gvCamTarget = gvPlayer
 	local px = 0
 	local py = 0
@@ -704,8 +733,7 @@
 		if(getcon("downPeek", "hold")) ly = (screenH() / 2.5)
 	}
 
-	if(gvCamTarget != null && gvCamTarget != false && gvPlayer)
-	{
+	if(gvCamTarget != null && gvCamTarget != false && gvPlayer) {
 		if(gvPlayer) {
 			if(gvCamTarget == gvPlayer) {
 				if(debug && mouseDown(0)) {
@@ -767,16 +795,17 @@
 
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "bg")
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "mg")
-	if(gvMap.name != "shop") for(local i = 0; i < (screenW() / 16) + 1; i++) {
+	if(gvMap.name != "shop" && gvVoidFog) for(local i = 0; i < (screenW() / 16) + 1; i++) {
 		drawSprite(sprVoid, 0, 0 + (i * 16), gvMap.h - 32 - camy)
 	}
 	runActors()
 	drawZList(8)
 	if(actor.rawin("Water")) foreach(i in actor["Water"]) { i.draw() }
 	drawAmbientLight()
-	if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "fg", 1, gvLight)
+	if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "fg", 1, 1, 1, gvLight)
 	else gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "fg")
 	if(actor.rawin("SecretWall")) foreach(i in actor["SecretWall"]) { i.draw() }
+	if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "solid")
 
 	//HUDs
@@ -831,7 +860,13 @@
 
 		//Draw coins & herrings
 		drawSprite(sprCoin, 0, 16, screenH() - 16)
-		if(game.maxCoins > 0) drawText(font2, 24, screenH() - 23, game.levelCoins.tostring() + "/" + game.maxCoins.tostring())
+		if(game.maxCoins > 0) {
+			if(gvTimeAttack) {
+				if(levelEndRunner) drawText(font2, 24, screenH() - 23, game.coins.tostring())
+				else drawText(font2, 24, screenH() - 23, (game.coins + game.levelCoins).tostring())
+			}
+			else drawText(font2, 24, screenH() - 23, game.levelCoins.tostring() + "/" + game.maxCoins.tostring())
+		}
 		else drawText(font2, 24, screenH() - 23, game.coins.tostring())
 		//Herrings (redcoins)
 		if(game.maxRedCoins > 0) drawSprite(sprHerring, 0, 16, screenH() - 40)
@@ -861,12 +896,12 @@
 				drawSprite(sprStar, 0, screenW() - 18, 18)
 				break
 			case 8:
-				drawSprite(getroottable()[game.characters[game.playerChar]["doll"]], 0, screenW() - 18, 24)
+				drawSprite(sprCoffee, 0, screenW() - 18, 17)
 				break
 		}
 
 		//Draw level IGT
-		if(gvDoIGT && config.showleveligt) drawText(font2, 8, 32, formatTime(gvIGT))
+		if(gvDoIGT && config.showleveligt && levelEndRunner != 1) drawText(font2, 8, 32, formatTime(gvIGT))
 
 		//Draw offscreen player
 		if(gvPlayer) if(gvPlayer.y < -8) {
@@ -927,11 +962,13 @@
 
 	drawDebug()
 
-	if(levelEndRunner == 0) gvIGT++
-	game.igt++
+	if(levelEndRunner == 0 && gvPlayer) {
+		gvIGT++
+		game.igt++
+	}
 
 	//Draw global IGT
-	if(config.showglobaligt) {
+	if(config.showglobaligt && levelEndRunner != 1) {
 		local gtd = formatTime(game.igt) //Game time to draw
 		drawText(font2, (screenW() / 2) - (gtd.len() * 4), screenH() - 24, gtd)
 	}
@@ -977,4 +1014,13 @@
 	if(camx < 0) camx = 0
 	if(camy > uy) camy = uy
 	if(camy < 0) camy = 0
+}
+
+::TimeAttackSign <- class extends Actor {
+	function run() {
+		local str = gvLangObj["stats"]["final-time"]
+		local time = formatTime(game.igt)
+		drawText(font2, (screenW() / 2) - (str.len() * 4), 64, str)
+		drawText(font2, (screenW() / 2) - (time.len() * 4), 80, time)
+	}
 }

@@ -64,6 +64,12 @@
 	anPush = [6, 7]
 	anStomp = [38, 39]
 
+	mySprNormal = null
+	mySprFire = null
+	mySprIce = null
+	mySprAir = null
+	mySprEarth = null
+
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		anim = anStand
@@ -77,6 +83,12 @@
 		anFall = anFallN
 		xprev = x
 		yprev = y
+
+		mySprNormal = sprKonqi
+		mySprFire = sprKonqiFire
+		mySprIce = sprKonqiIce
+		mySprAir = sprKonqiAir
+		mySprEarth = sprKonqiEarth
 	}
 
 	function physics() {}
@@ -261,7 +273,7 @@
 				case anJumpU:
 					if(frame < 0.0 + 1) frame += 0.1
 
-					if(!freeDown || onPlatform()) {
+					if(!freeDown || (onPlatform() && vspeed >= 0)) {
 						anim = anStand
 						frame = 0.0
 					}
@@ -274,7 +286,7 @@
 
 				case anJumpT:
 					frame += 0.2
-					if(!freeDown || onPlatform()) {
+					if(!freeDown || (onPlatform() && vspeed >= 0)) {
 						anim = anStand
 						frame = 0.0
 					}
@@ -287,7 +299,7 @@
 
 				case anFall:
 					frame += 0.1
-					if(!freeDown || onPlatform()) {
+					if(!freeDown || (onPlatform() && vspeed >= 0)) {
 						anim = anStand
 						frame = 0.0
 					}
@@ -468,7 +480,7 @@
 				}
 
 				//Get on ladder
-				if((getcon("down", "hold") || getcon("up", "hold")) && anim != anHurt && anim != anClimb && (vspeed >= 0 || getcon("down", "press") || getcon("up", "press"))) {
+				if(((getcon("down", "hold") && placeFree(x, y + 2)) || getcon("up", "hold")) && anim != anHurt && anim != anClimb && (vspeed >= 0 || getcon("down", "press") || getcon("up", "press"))) {
 					if(atLadder()) {
 						anim = anClimb
 						frame = 0.0
@@ -483,6 +495,7 @@
 					if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold")) {
 						y++
 						canJump = 32
+						if(!placeFree(x, y) && !placeFree(x, y - 1)) y--
 					}
 					else if(canJump > 0) {
 						jumpBuffer = 0
@@ -972,7 +985,7 @@
 		}
 		if(y < -100) y = -100.0
 
-		switch(escapeMoPlat(1)) {
+		switch(escapeMoPlat(1, 1)) {
 			case 1:
 				if(vspeed < 0) vspeed = 0
 				break
@@ -992,7 +1005,7 @@
 		else friction = 0.1
 
 		//Hurt
-		if(onHazard(x, y)) hurt = 2
+		if(onHazard(x, y)) hurt = 1 + game.difficulty
 		if(onDeath(x, y)) game.health = 0
 
 		if(hurt > 0 && invincible == 0) {
@@ -1025,27 +1038,28 @@
 		if(!hidden) {
 			switch(game.weapon) {
 				case 0:
-					sprite = sprKonqi
+					sprite = mySprNormal
 					damageMult = damageMultN
 					break
 
 				case 1:
-					sprite = sprKonqiFire
+					sprite = mySprFire
 					damageMult = damageMultF
 					break
 
 				case 2:
-					sprite = sprKonqiIce
+					sprite = mySprIce
 					damageMult = damageMultI
 					break
 
 				case 3:
-					sprite = sprKonqiAir
+					sprite = mySprAir
 					damageMult = damageMultA
 					break
 
 				case 4:
-					sprite = sprKonqiEarth
+					sprite = mySprEarth
+					damageMult = damageMultE
 					break
 			}
 
@@ -1173,6 +1187,11 @@
 				break
 			case 7:
 				newActor(Starnyan, x + hspeed, y + vspeed)
+				break
+			case 8:
+				popSound(sndGulp, 0)
+				coffeeTime += 60 * 30
+				game.subitem = 0
 				break
 		}
 	}

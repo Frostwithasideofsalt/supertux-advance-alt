@@ -136,15 +136,19 @@ const menuY = 40
 ::meMain <- [
 	{
 		name = function() { return gvLangObj["main-menu"]["new"] },
-		func = function() { menu = meDifficulty }
+		func = function() { gvTimeAttack = false; menu = meDifficulty }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["load"] },
-		func = function() { selectLoadGame() }
+		func = function() { gvTimeAttack = false; selectLoadGame() }
+	},
+	{
+		name = function() { return gvLangObj["main-menu"]["time-attack"] },
+		func = function() { gvTimeAttack = true; menu = meTimeAttack }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["contrib-levels"] },
-		func = function() { selectContrib(); }
+		func = function() { gvTimeAttack = false; selectContrib(); }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["options"] },
@@ -176,6 +180,23 @@ const menuY = 40
 	}
 ]
 
+::meTimeAttack <- [
+	{
+		name = function() { return gvLangObj["level"]["full-game"] },
+		func = function() { gvTAFullGame = true; game.path = "res/map/"; gvTAStart = "aurora-learn"; menu = meDifficulty },
+		desc = function() { return gvLangObj["options-menu-desc"]["fullgame"] }
+	},
+	{
+		name = function() { return gvLangObj["level"]["overworld-0"] },
+		func = function() { gvTAFullGame = false; game.path = "res/map/"; gvTAStart = "aurora-learn"; menu = meDifficulty }
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] }
+		func = function() { menu = meMain }
+		back = function() { menu = meMain }
+	}
+]
+
 ::mePausePlay <- [
 	{
 		name = function() { return gvLangObj["pause-menu"]["continue"]},
@@ -191,7 +212,10 @@ const menuY = 40
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["quit-level"]},
-		func = function() { startOverworld(game.world); }
+		func = function() {
+			if(gvTimeAttack) startMain()
+			else startOverworld(game.world)
+		}
 	}
 ]
 
@@ -503,19 +527,35 @@ const menuY = 40
 ::meDifficulty <- [
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["easy"] },
-		func = function() { game.difficulty = 0; menu = meNewGame }
+		func = function() {
+			game.difficulty = 0
+			if(gvTimeAttack) newTimeAttack()
+			else menu = meNewGame
+		}
 	},
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["normal"] },
-		func = function() { game.difficulty = 1; menu = meNewGame }
+		func = function() {
+			game.difficulty = 1
+			if(gvTimeAttack) newTimeAttack()
+			else menu = meNewGame
+		}
 	},
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["hard"] },
-		func = function() { game.difficulty = 2; menu = meNewGame }
+		func = function() {
+			game.difficulty = 2
+			if(gvTimeAttack) newTimeAttack()
+			else menu = meNewGame
+		}
 	},
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["super"] },
-		func = function() { game.difficulty = 3; menu = meNewGame }
+		func = function() {
+			game.difficulty = 3
+			if(gvTimeAttack) newTimeAttack()
+			else menu = meNewGame
+		}
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["cancel"] },

@@ -62,6 +62,12 @@
 	anWall = [48, 49]
 	anCrawl = [72, 73, 74, 75, 74, 73]
 
+	mySprNormal = null
+	mySprFire = null
+	mySprIce = null
+	mySprAir = null
+	mySprEarth = null
+
 	nowInWater = false
 
 	//Elemental resistances
@@ -150,6 +156,12 @@
 		anFall = anFallN
 		xprev = x
 		yprev = y
+
+		mySprNormal = sprTux
+		mySprFire = sprTuxFire
+		mySprIce = sprTuxIce
+		mySprAir = sprTuxAir
+		mySprEarth = sprTuxEarth
 	}
 
 	function physics() {}
@@ -263,7 +275,7 @@
 				case anJumpU:
 					if(frame < 1) frame += 0.1
 
-					if(!placeFree(x, y + 1) || onPlatform()) {
+					if(!placeFree(x, y + 1) || (onPlatform() && vspeed >= 0)) {
 						anim = anStand
 						frame = 0.0
 					}
@@ -276,7 +288,7 @@
 
 				case anJumpT:
 					frame += 0.2
-					if(!freeDown || onPlatform()) {
+					if(!freeDown || (onPlatform() && vspeed >= 0)) {
 						anim = anStand
 						frame = 0.0
 					}
@@ -289,7 +301,7 @@
 
 				case anFall:
 					frame += 0.1
-					if(!freeDown || onPlatform()) {
+					if(!freeDown || (onPlatform() && vspeed >= 0)) {
 						anim = anStand
 						frame = 0.0
 					}
@@ -410,6 +422,7 @@
 				else mspeed = 2.0
 				if(nowInWater) mspeed *= 0.8
 				if(anim == anCrawl) mspeed = 1.0
+				if(coffeeTime > 0) mspeed *= 2.0
 
 				//Moving left and right
 				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
@@ -467,7 +480,7 @@
 				}
 
 				//Get on ladder
-				if((getcon("down", "hold") || getcon("up", "hold")) && anim != anHurt && anim != anClimb && (vspeed >= 0 || getcon("down", "press") || getcon("up", "press"))) {
+				if(((getcon("down", "hold") && placeFree(x, y + 2)) || getcon("up", "hold")) && anim != anHurt && anim != anClimb && (vspeed >= 0 || getcon("down", "press") || getcon("up", "press"))) {
 					if(atLadder()) {
 						anim = anClimb
 						frame = 0.0
@@ -479,9 +492,10 @@
 
 				//Jumping
 				if(getcon("jump", "press") || jumpBuffer > 0) {
-					if(onPlatform() && !placeFree(x, y + 2) && getcon("down", "hold")) {
+					if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold")) {
 						y++
 						canJump = 32
+						if(!placeFree(x, y) && !placeFree(x, y - 1)) y--
 					}
 					else if(canJump > 0 && placeFree(x, y - 2)) {
 						jumpBuffer = 0
@@ -643,6 +657,10 @@
 				else hspeed += vspeed / 2.5
 				vspeed = 0
 			}
+			if(anim == anDive && vspeed >= 1 && !placeFree(x, y + 1) && game.weapon == 4) {
+				hspeed *= 1.5
+				vspeed = 0.0
+			}
 
 			//Max ground speed
 			local speedLimit = 6.0
@@ -800,6 +818,7 @@
 				if(getcon("down", "hold") && vspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed += 0.1
 				if(getcon("up", "hold") && vspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed -= 0.1
 			}
+			if(coffeeTime > 0) mspeed *= 2.0
 
 			//Friction
 			if(hspeed > 0) hspeed -= friction / 2
@@ -915,7 +934,7 @@
 							if(hspeed < 0) hspeed += 0.2
 						}
 						didstep = true
-						if(slippery) vspeed -= 2.0
+						if(slippery && !swimming && !placeFree(xprev, yprev + 2)) vspeed -= 2.0
 						break
 					}
 				}
@@ -942,7 +961,7 @@
 		}
 		if(y < -100) y = -100.0
 
-		switch(escapeMoPlat(1)) {
+		switch(escapeMoPlat(1, 1)) {
 			case 1:
 				if(vspeed < 0) vspeed = 0
 				break
@@ -962,7 +981,7 @@
 		else friction = 0.1
 
 		//Hurt
-		if(onHazard(x, y)) hurt = 2
+		if(onHazard(x, y)) hurt = 1 + game.difficulty
 		if(onDeath(x, y)) game.health = 0
 
 		if(hurt > 0 && invincible == 0) {
@@ -995,35 +1014,35 @@
 		if(!hidden) {
 			switch(game.weapon) {
 				case 0:
-					sprite = sprTux
+					sprite = mySprNormal
 					if(anim == anStand && anStand != anStandN) anim = anStandN
 					anStand = anStandN
 					damageMult = damageMultN
 					break
 
 				case 1:
-					sprite = sprTuxFire
+					sprite = mySprFire
 					if(anim == anStand && anStand != anStandF) anim = anStandF
 					anStand = anStandF
 					damageMult = damageMultF
 					break
 
 				case 2:
-					sprite = sprTuxIce
+					sprite = mySprIce
 					if(anim == anStand && anStand != anStandI) anim = anStandI
 					anStand = anStandI
 					damageMult = damageMultI
 					break
 
 				case 3:
-					sprite = sprTuxAir
+					sprite = mySprAir
 					if(anim == anStand && anStand != anStandA) anim = anStandA
 					anStand = anStandA
 					damageMult = damageMultA
 					break
 
 				case 4:
-					sprite = sprTuxEarth
+					sprite = mySprEarth
 					if(anim == anStand && anStand != anStandE) anim = anStandE
 					anStand = anStandE
 					damageMult = damageMultE
@@ -1103,7 +1122,7 @@
 		else {
 			deleteActor(id)
 			gvPlayer = false
-			newActor(TuxDie, x, y)
+			newActor(TuxDie, x, y, sprite)
 			game.health = 0
 		}
 	}
@@ -1155,6 +1174,11 @@
 			case 7:
 				newActor(Starnyan, x + hspeed, y + vspeed)
 				break
+			case 8:
+				popSound(sndGulp, 0)
+				coffeeTime += 60 * 30
+				game.subitem = 0
+				break
 		}
 	}
 
@@ -1164,11 +1188,13 @@
 ::TuxDie <- class extends Actor {
 	vspeed = -4.0
 	timer = 150
+	sprite = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		stopMusic()
 		playSound(sndDie, 0)
+		sprite = _arr
 	}
 
 	function run() {
@@ -1182,24 +1208,20 @@
 				game.weapon = 0
 			}
 		}
-		switch(game.weapon) {
-			case 0:
-				drawSprite(sprTux, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
-				break
-			case 1:
-				drawSprite(sprTuxFire, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
-				break
-			case 2:
-				drawSprite(sprTuxIce, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
-				break
-			case 3:
-				drawSprite(sprTuxAir, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
-				break
-			case 4:
-				drawSprite(sprTuxEarth, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
-				break
-		}
+		drawSprite(sprite, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
 	}
 
 	function _typeof() { return "DeadPlayer" }
+}
+
+::Penny <- class extends Tux {
+	constructor(_x, _y, _arr = null){
+		base.constructor(_x, _y, _arr)
+	}
+
+	mySprNormal = sprPenny
+	mySprFire = sprPennyFire
+	mySprIce = sprPennyIce
+	mySprAir = sprPennyAir
+	mySprEarth = sprPennyEarth
 }

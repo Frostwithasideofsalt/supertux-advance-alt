@@ -138,6 +138,10 @@
 ::defBossDoor <- sprBossDoor
 ::sprFireBlock <- newSprite("res/gfx/fireblock.png", 16, 16, 0, 0, 0, 0)
 ::defFireBlock <- sprFireBlock
+::sprCrumbleRock <- newSprite("res/gfx/crumble-rock.png", 16, 16, 0, 0, 8, 8)
+::defCrumbleRock <- sprCrumbleRock
+::sprCrumbleIce <- newSprite("res/gfx/crumble-ice.png", 16, 16, 0, 0, 8, 8)
+::defCrumbleIce <- sprCrumbleIce
 
 
 //NPCs
@@ -154,6 +158,7 @@
 ::sprGaruda <- newSprite("res/gfx/garuda.png", 35, 36, 0, 0, 17, 36)
 ::sprKelvinNPC <- newSprite("res/gfx/npc-kelvin.png", 32, 32, 0, 0, 16, 32)
 ::sprDuke <- newSprite("res/gfx/duke.png", 32, 32, 0, 0, 16, 32)
+::sprPenguinNPC <- newSprite("res/gfx/penguin-npc.png", 14, 23, 0, 0, 7, 23)
 
 
 //Enemies
@@ -221,12 +226,24 @@
 ::defSnowBounce <- sprSnowBounce
 ::sprSnowJumpy <- newSprite("res/gfx/og-jumpy.png", 16, 25, 0, 0, 8, 11)
 ::defSnowJumpy <- sprSnowJumpy
-::sprSpikeCap <- newSprite("res/gfx/spikecap.png", 16, 17, 0, 0, 8, 9)
+::sprSpikeCap <- newSprite("res/gfx/spikecap.png", 16, 17, 0, 0, 8, 11)
 ::defSpikeCap <- sprSpikeCap
-::sprSnowSpike <- newSprite("res/gfx/snowspike.png", 20, 20, 0, 0, 10, 12)
+::sprSnowSpike <- newSprite("res/gfx/snowspike.png", 20, 20, 0, 0, 10, 13)
 ::defSnowSpike <- sprSnowSpike
 ::sprSnowFly <- newSprite("res/gfx/snowfly.png", 15, 19, 0, 0, 7, 8)
 ::defSnowFly <- sprSnowFly
+::sprTallCap <- newSprite("res/gfx/tallcap.png", 16, 32, 0, 0, 8, 24)
+::defTallCap <- sprTallCap
+::sprSmartTallCap <- newSprite("res/gfx/smarttallcap.png", 16, 34, 0, 0, 8, 26)
+::defSmartTallCap <- sprSmartTallCap
+::sprSnowman <- newSprite("res/gfx/snowman.png", 20, 31, 0, 0, 10, 22)
+::defSnowman <- sprSnowman
+::sprSnowoman <- newSprite("res/gfx/snowoman.png", 20, 31, 0, 0, 10, 22)
+::defSnowoman <- sprSnowoman
+::sprSnowCaptain <- newSprite("res/gfx/captain-snow.png", 16, 16, 0, 0, 8, 9)
+::defSnowCaptain <- sprSnowCaptain
+::sprCaptainMorel <- newSprite("res/gfx/captain-morel.png", 16, 19, 0, 0, 8, 12)
+::defCaptainMorel <- sprCaptainMorel
 
 
 //Bosses
@@ -271,6 +288,8 @@
 ::defKeyMythril <- sprKeyMythril
 ::sprSpecialBall <- newSprite("res/gfx/specialbubble.png", 16, 16, 0, 0, 8, 8)
 ::defSpecialBall <- sprSpecialBall
+::sprCoffee <- newSprite("res/gfx/coffee-cup.png", 14, 20, 0, 0, 7, 12)
+::defCoffee <- sprCoffee
 
 
 //Effects
@@ -316,10 +335,21 @@
 ::defSplash <- sprSplash
 ::sprBigSpark <- newSprite("res/gfx/hit-yellow.png", 55, 68, 0, 0, 32, 40)
 ::defBigSpark <- sprBigSpark
+::sprSteelBall <- newSprite("res/gfx/steelball.png", 8, 8, 0, 0, 4, 4)
+::defSteelBall <- sprSteelBall
 
 
 //Platforms
 ::sprPlatformWood <- newSprite("res/gfx/moplat-wood.png", 16, 8, 0, 0, 8, 4)
+
+
+//Portals
+::sprPortalGray <- newSprite("res/gfx/portal-gray.png", 32, 48, 0, 0, 16, 24)
+::sprPortalBlue <- newSprite("res/gfx/portal-blue.png", 32, 48, 0, 0, 16, 24)
+::sprPortalRed <- newSprite("res/gfx/portal-red.png", 32, 48, 0, 0, 16, 24)
+::sprPortalGreen <- newSprite("res/gfx/portal-green.png", 32, 48, 0, 0, 16, 24)
+::sprPortalYellow <- newSprite("res/gfx/portal-yellow.png", 32, 48, 0, 0, 16, 24)
+::sprPortalPunkle <- newSprite("res/gfx/portal-punkle.png", 32, 48, 0, 0, 16, 24)
 
 
 //Backgrounds
@@ -416,6 +446,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::musBoss <- "res/mus/boss.ogg"
 ::musBossIntro <- "res/mus/boss-intro.ogg"
 ::musGrassOverworld <- "res/mus/peaceful-village.ogg"
+::musBerrylife <- "res/mus/berrylife.ogg"
 
 //Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/mus/invincible.ogg")
@@ -479,6 +510,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprColorSwitch = defColorSwitch
 	sprLockBlock = defLockBlock
 	sprBossDoor = defBossDoor
+	sprCrumbleRock = defCrumbleRock
 
 	sprSnake = defSnake
 	sprDeathcap = defDeathcap
@@ -502,6 +534,10 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprLivewire = defLivewire
 	sprBlazeborn = defBlazeborn
 	sprSpikeCap = defSpikeCap
+	sprTallCap = defTallCap
+	sprSmartTallCap = defSmartTallCap
+	sprCaptainMorel = defCaptainMorel
+	sprSnowCaptain = defSnowCaptain
 
 	sprNolok = defNolok
 	sprYeti = defYeti
@@ -553,6 +589,10 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprJumpy = sprSnowJumpy
 	sprSpikeCap = sprSnowSpike
 	sprFlyAmanita = sprSnowFly
+	sprTallCap = sprSnowman
+	sprSmartTallCap = sprSnowoman
+	sprCrumbleRock = sprCrumbleIce
+	sprCaptainMorel = sprSnowCaptain
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)

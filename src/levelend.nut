@@ -11,27 +11,30 @@
 		timer--
 		if(timer == 0 || getcon("pause", "press")) {
 			stopChannel(-1)
-			startOverworld(game.world)
 			levelEndRunner = 0
+			if(gvNextLevel != "" && gvTimeAttack) {
+				game.check = false
+				startPlay(game.path + gvNextLevel + ".json", true, true)
+				gvIGT = 0
+			}
+			else startOverworld(game.world)
 		}
 	}
 
 	function _typeof() { return "LevelEnder" }
 }
 
-::endGoal <- function(level = "") {
+::endGoal <- function(next = "", unblock = "") {
 	local clearedLevel
-	if(level == "") {
-		clearedLevel = gvMap.name
-	} else {
-		clearedLevel = level
-	}
+	clearedLevel = gvMap.name
+	gvNextLevel = next
 	if(levelEndRunner == 0){
 		gvPlayer.canMove = false
 		gvPlayer.endMode = true
 		if(gvPlayer.hspeed > 2) gvPlayer.hspeed = 2.0
 		gvPlayer.invincible = 999
 
+		if(unblock != "" && !game.unblocked.rawin(unblock)) game.unblocked[unblock] <- true
 		if(!game.completed.rawin(clearedLevel)) game.completed[clearedLevel] <- true
 		if(game.levelCoins >= game.maxCoins && !game.allCoins.rawin(clearedLevel)) game.allCoins[clearedLevel] <- true
 		if(game.secrets >= game.maxSecrets && !game.allSecrets.rawin(clearedLevel)) game.allSecrets[clearedLevel] <- true
