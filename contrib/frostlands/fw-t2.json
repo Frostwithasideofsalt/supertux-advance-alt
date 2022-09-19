@@ -336,7 +336,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgForest\nsongPlay(musSnowTown)\ngfxOverrideFL()"
+         "value":"drawBG = dbgForest\nsongPlay(musRS)\ngfxOverrideFL()"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",

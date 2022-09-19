@@ -16,6 +16,7 @@ print("Loading Frostlands overhauled PT2")
 ::musair <- "contrib/frostlands/music/fried-air.ogg"
 ::musSUW <- "contrib/frostlands/music/STK-subsea.ogg"
 ::musSV <- "contrib/frostlands/music/STK-valley.ogg"
+::musRS <- "contrib/frostlands/music/Rough-Start.ogg"
 
 //visual assets
 ::bgAuroraALT <- newSprite("contrib/frostlands/gfx/BG/aurora-alt.png", 720, 240, 0, 0, 0, 0)
