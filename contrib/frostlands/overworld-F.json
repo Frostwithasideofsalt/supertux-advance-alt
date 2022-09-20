@@ -401,7 +401,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -1403,21 +1403,21 @@
          "tilewidth":16
         }, 
         {
-         "columns":5,
+         "columns":6,
          "firstgid":1006,
          "image":"..\/..\/res\/gfx\/overactors.png",
          "imageheight":16,
-         "imagewidth":80,
+         "imagewidth":96,
          "margin":0,
          "name":"actor",
          "spacing":0,
-         "tilecount":5,
+         "tilecount":6,
          "tileheight":16,
          "tilewidth":16
         }, 
         {
          "columns":8,
-         "firstgid":1011,
+         "firstgid":1012,
          "image":"..\/..\/res\/gfx\/actors.png",
          "imageheight":192,
          "imagewidth":128,
