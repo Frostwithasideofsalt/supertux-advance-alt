@@ -19,7 +19,6 @@ print("Loading Frostlands overhauled PT2")
 ::musRS <- "contrib/frostlands/music/Rough-Start.ogg"
 
 //visual assets
-::bgAuroraALT <- newSprite("contrib/frostlands/gfx/BG/aurora-alt.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowPlainALT <- newSprite("contrib/frostlands/gfx/BG/bgSnowPlain-alt.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowNever <- newSprite("contrib/frostlands/gfx/BG/Anever.png", 720, 240, 0, 0, 0, 0)
 ::bgGrassNever <- newSprite("contrib/frostlands/gfx/BG/Bnever.png", 1024, 240, 0, 0, 0, 0)
@@ -62,9 +61,9 @@ print("Loading Frostlands overhauled PT2")
 ::sprNJ <- newSprite("contrib/frostlands/gfx/NPC/ninjarun.png", 19, 18, 0, 0, 19, 18)
 ::sprPX <- newSprite("contrib/frostlands/gfx/NPC/pix.png", 18, 16, 0, 0, 9, 16)
 ::sprP <- newSprite("contrib/frostlands/gfx/NPC/placeholder.png", 37, 51, 0, 0, 16, 51)
+::sprEyet <- newSprite("contrib/frostlands/gfx/NPC/eightman.png", 37, 51, 0, 0, 16, 51)
 ::sprTheo <- newSprite("contrib/frostlands/gfx/NPC/Theo.png", 21, 47, 0, 0, 10, 47)
 ::sprMPlayer <- newSprite("contrib/frostlands/gfx/NPC/minetest-player.png", 16, 33, 0, 0, 8, 33)
-::sprPolyman <- newSprite("contrib/frostlands/gfx/NPC/polyman.png", 37, 51, 0, 0, 16, 51)
 ::sprWallBaller <- newSprite("contrib/frostlands/gfx/NPC/wall-crawler.png", 32, 32, 0, 0, 16, 32)
 
 //OG style
