@@ -4,7 +4,7 @@ print("Loading Frostlands overhauled PT2")
 
 //Enemy
 ::sprBlitz <- newSprite("contrib/frostlands/gfx/enemies/mrblitz.png", 16, 16, 0, 0, 8, 9)
-::sprBlitz2 <- newSprite("contrib/frostlands/gfx/enemies/smartblitz.png", 16, 16, 0, 0, 8, 9)
+::sprBlitz2 <- newSprite("contrib/frostlands/gfx/enemies/dumbblitz.png", 16, 16, 0, 0, 8, 9)
 
 //music
 
@@ -284,7 +284,7 @@ print("Loading Frostlands overhauled PT2")
 		if(gvPlayer) {
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(!soldout && game.coins >= price) {
 				gvPlayer.vspeed = 0
-				vspeed = -1
+				vspeed = 0
 				playSound(sndHeal, 0)
 				game.health += 4
 				game.maxHealth += 4
@@ -312,7 +312,7 @@ print("Loading Frostlands overhauled PT2")
 	flip = false
 	squish = false
 	squishTime = 0.0
-	smart = false
+	smart = true
 	moving = false
 	touchDamage = 2.0
 
@@ -325,12 +325,11 @@ print("Loading Frostlands overhauled PT2")
 
 	function routine() {}
 	function animation() {}
-
 	function run() {
 		base.run()
-
+		smart = true
 		if(gvPlayer && abs(x - gvPlayer.x) <= 240) {
-			if(getFrames() % 120 == 0){
+			if(getFrames() % 80 == 0){
 				local c = actor[newActor(CannonBob, x - 4, y - 4)]
 							c.hspeed = ((gvPlayer.x - x) / 48)
 							local d = (y - gvPlayer.y) / 64
@@ -388,8 +387,8 @@ print("Loading Frostlands overhauled PT2")
 					}
 
 					//Draw
-					if(smart) drawSpriteEx(sprGradcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprDeathcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					if(smart) drawSpriteEx(sprBlitz, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					else drawSpriteEx(sprBlitz2, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 					if(frozen <= 120) {
 					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -408,15 +407,15 @@ print("Loading Frostlands overhauled PT2")
 					}
 
 					//Draw
-					if(smart) drawSpriteEx(sprBlitz2, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprBlitz, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					if(smart) drawSpriteEx(sprBlitz, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					else drawSpriteEx(sprBlitz2, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
 				squishTime += 0.025
 				if(squishTime >= 1) die()
-				if(smart) drawSpriteEx(sprBlitz2, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprBlitz, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				if(smart) drawSpriteEx(sprBlitz, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSpriteEx(sprBlitz2, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 
 			if(!squish) shape.setPos(x, y)
@@ -459,7 +458,7 @@ print("Loading Frostlands overhauled PT2")
 			if(gvPlayer.anim == gvPlayer.anSlide && hitTest(shape, gvPlayer.shape)) {
 				local c = newActor(DeadNME, x, y)
 				if(smart) actor[c].sprite = sprBlitz
-				else actor[c].sprite = sprBlitz
+				else actor[c].sprite = sprBlitz2
 				actor[c].vspeed = min(-fabs(gvPlayer.hspeed), -4)
 				actor[c].hspeed = (gvPlayer.hspeed / 16)
 				actor[c].spin = (gvPlayer.hspeed * 7)
@@ -473,7 +472,7 @@ print("Loading Frostlands overhauled PT2")
 		if(!_stomp) {
 			local c = newActor(DeadNME, x, y)
 			if(smart) actor[c].sprite = sprBlitz
-			else actor[c].sprite = sprBlitz
+			else actor[c].sprite = sprBlitz2
 			actor[c].vspeed = -4.0
 			actor[c].spin = 4
 			actor[c].angle = 180
