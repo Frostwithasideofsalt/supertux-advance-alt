@@ -15,7 +15,6 @@ print("Loading Frostlands overhauled PT2")
 ::mussal <- "contrib/frostlands/music/salcon.ogg"
 ::musair <- "contrib/frostlands/music/fried-air.ogg"
 ::musSUW <- "contrib/frostlands/music/STK-subsea.ogg"
-::musSV <- "contrib/frostlands/music/STK-valley.ogg"
 ::musRS <- "contrib/frostlands/music/Rough-Start.ogg"
 
 //visual assets
@@ -329,14 +328,13 @@ print("Loading Frostlands overhauled PT2")
 	function run() {
 		base.run()
 		smart = true
-		if(gvPlayer && abs(x - gvPlayer.x) <= 240) {
+		if(gvPlayer && abs(x - gvPlayer.x) <= 240 && frozen <= 0) {
 			if(getFrames() % 80 == 0){
 				local c = actor[newActor(CannonBob, x - 4, y - 4)]
 							c.hspeed = ((gvPlayer.x - x) / 48)
 							local d = (y - gvPlayer.y) / 64
 			}
 		}
-
 		if(active) {
 			if(!moving) if(gvPlayer) if(x > gvPlayer.x) {
 				flip = true
@@ -451,7 +449,7 @@ print("Loading Frostlands overhauled PT2")
 		}
 
 		if(_element == "ice") {
-			frozen = 0
+			frozen = 300
 			return
 		}
 

@@ -3838,7 +3838,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgtropicS\nsongPlay(musSV)\ngfxOverrideFL()"
+         "value":"drawBG = musRace\nsongPlay(musSV)\ngfxOverrideFL()"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",
