@@ -6,11 +6,10 @@
   [x] Main play
   [x] Level end
 [x] Overworld
-[ ] Forward racing
 
 ## Level assets
 
-[ ] Moving platforms
+[x] Moving platforms
 [x] One-way platforms
 [x] Breakable bricks
 [x] Item boxes
@@ -19,6 +18,9 @@
 [x] Animated tiles
 [x] Damage tiles
 [x] Death tiles
+[ ] Boiling Water
+[ ] Boost rings
+[ ] Rad race initializer
 
 ## Enemies
 
@@ -36,6 +38,8 @@
 [x] Fish
 [x] Haywire
 [x] Owls
+[x] Crusher
+[ ] Wheeler
 
 ## Bosses
 
@@ -65,6 +69,21 @@
 [ ] Ice flower
 [ ] Air feather
 [ ] Earth shell
+**PENNY ITEMS**
+[ ] Fire flower
+[ ] Ice flower
+[ ] Air feather
+[ ] Earth shell
+**KATIE ITEMS**
+[ ] Fire flower
+[ ] Ice flower
+[ ] Air feather
+[ ] Earth shell
+**KIKI ITEMS**
+[ ] Fire flower
+[ ] Ice flower
+[ ] Air feather
+[ ] Earth shell
 
 ## Misc
 
@@ -73,13 +92,12 @@
 [x] General store
 [x] Fix the infamous slope glitch
 [x] add glow to Blazeborn
-[ ] World travel
+[x] World travel
 [x] In-game timer
 [x] Jump buffering
-[ ] Boiling Water
 [ ] Mod Tracking (for requirement checks)
-[ ] Bonus coins for Xtreme levels
 [ ] Two-player support
+[ ] Parallax backgrounds
 
 ## Bugs to fix
 

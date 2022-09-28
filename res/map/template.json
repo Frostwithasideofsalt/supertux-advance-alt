@@ -203,7 +203,7 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":19,
+ "nextlayerid":20,
  "nextobjectid":2,
  "orientation":"orthogonal",
  "properties":[
@@ -218,7 +218,7 @@
          "value":""
         }],
  "renderorder":"right-down",
- "tiledversion":"1.8.4",
+ "tiledversion":"1.9.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -327,6 +327,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.8",
+ "version":"1.9",
  "width":100
 }

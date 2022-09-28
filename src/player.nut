@@ -7,6 +7,8 @@
 //Child classes will use flags to determine what abilities can be used
 
 ::Player <- class extends PhysAct {
+	playerNum = 0
+
 	//Basic variables
 	anim = null
 	sprite = 0
@@ -14,6 +16,7 @@
 	shapeStand = null
 	shapeCrouch = null
 	shapeSwim = null
+	resTime = 0
 
 	//Animation states defined in child classes
 	anStand = null
@@ -64,7 +67,7 @@
 		blast = 1.0
 	}
 	blinking = 0 //Number of iframes remaining
-	coffeeTime = 0
+	zoomies = 0
 
 	//Misc
 	heldby = 0
@@ -84,14 +87,15 @@
 			if(i.alignment == 1) continue
 			if(i.owner == id) continue
 
-			if(hitTest(shape, i.shape)) {
+			if(i.alignment != 1 && i.owner != id && hitTest(shape, i.shape)) {
 				getHurt(i.power, i.element, i.cut, i.blast)
 				if(i.piercing == 0) deleteActor(i.id)
 				else i.piercing--
 			}
 		}
 
-		if(coffeeTime > 0) coffeeTime--
+		if(zoomies > 0) zoomies--
+		if(resTime > 0) resTime--
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {

@@ -25,16 +25,18 @@ const menuY = 40
 	menuItemsPos = []
 
 	//Draw options
-	//The number
+	//If there are more items than can be displayed at once
 	if(menu.len() > menuMax) for(local i = cursorOffset; i < cursorOffset + menuMax; i++) {
 		//Detect if menu item is disabled (has no function). Display it with gray font if so.
 		local currFont = font2
 		if(menu[i].rawin("disabled") && menu[i].disabled == true) { currFont = font2G }
 
 		if(cursor == i) {
+			//Make current selection blink
 			if(getFrames() / 24 % 2 == 0) currFont = font2I
 			drawSprite(font2, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
 			drawSprite(font2, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			//Display option description
 			if(menu[i].rawin("desc")){
 				setDrawColor(0x00000080)
 				drawRec(0, screenH() - fontH - 10, screenW(), 12, true)
@@ -52,6 +54,7 @@ const menuY = 40
 		if(cursorOffset > 0) for(local i = 0; i < 4; i++) drawSprite(font2, 103, (screenW() / 2 - 24) + (i * 12), screenH() - menuY - (fontH * (menuMax + 1)))
 		if(cursorOffset < menu.len() - menuMax) for(local i = 0; i < 4; i++) drawSprite(font2, 98, (screenW() / 2 - 24) + (i * 12), screenH() - menuY)
 	}
+	//If all items can fit on screen at once
 	else for(local i = 0; i < menu.len(); i++) {
 		//Detect if menu item is disabled (has no function). Display it with gray font if so.
 		local currFont = font2

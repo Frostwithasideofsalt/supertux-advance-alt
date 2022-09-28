@@ -77,6 +77,8 @@
 		"May I offer you a cup of tea? No? Well that's too bad.",
 		"JuiceQ" :
 		"Got juice?",
+		"Microplastics" :
+		"After eating one of those popsicles, I don't feel too good....",
 		"placeholder" :
 		"This is placeholder text",
 		"W-Baller" :
@@ -108,5 +110,17 @@
 		"FrostC: If you are able to, please turn on lighting for this level. It will let you see the very cool and awesome pipe transitions I made. I'm very happy how they look.",
 		"lololol" :
 		"FrostC: Made this level due to someone saying they wanted to see the air feather be used in Frostlands."
+		},
+
+	"achi-name" : {
+		"welcomeFrostlands" : "A new world",
+		"SecretFrostlands" : "Cold completonist",
+		"CompleteFrostlands" : "End of an adventure"
+	},
+
+	"achi-desc" : {
+		"welcomeFrostlands" : "Play the Frostlands for the first time.",
+		"SecretFrostlands" : "Kill all enemies, Collect all Coins, and find all secrets in all levels.",
+		"CompleteFrostlands" : "Complete all frostlands levels, including the secret ones."
 	}
 }

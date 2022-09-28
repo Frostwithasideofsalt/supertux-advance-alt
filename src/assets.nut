@@ -159,6 +159,7 @@
 ::sprKelvinNPC <- newSprite("res/gfx/npc-kelvin.png", 32, 32, 0, 0, 16, 32)
 ::sprDuke <- newSprite("res/gfx/duke.png", 32, 32, 0, 0, 16, 32)
 ::sprPenguinNPC <- newSprite("res/gfx/penguin-npc.png", 14, 23, 0, 0, 7, 23)
+::sprBearistaNPC <- newSprite("res/gfx/bearista.png", 21, 37, 0, 0, 10, 37)
 
 
 //Enemies
@@ -244,6 +245,18 @@
 ::defSnowCaptain <- sprSnowCaptain
 ::sprCaptainMorel <- newSprite("res/gfx/captain-morel.png", 16, 19, 0, 0, 8, 12)
 ::defCaptainMorel <- sprCaptainMorel
+::sprBearyl <- newSprite("res/gfx/bearyl.png", 32, 32, 0, 0, 16, 16)
+::defBearyl <- sprBearyl
+::sprSirCrusher <- newSprite("res/gfx/icecrusher.png", 32, 32, 0, 0, 16, 16)
+::defSirCrusher <- sprSirCrusher
+::sprDukeCrusher <- newSprite("res/gfx/duke-crusher.png", 32, 32, 0, 0, 16, 16)
+::defDukeCrusher <- sprDukeCrusher
+::sprWheelerHamster <- newSprite("res/gfx/hamsterwheel.png", 24, 24, 0, 0, 12, 14)
+::defWheelerHamster <- sprWheelerHamster
+::sprWheelerBlade <- newSprite("res/gfx/wheelblade.png", 24, 24, 0, 0, 12, 14)
+::defWheelerBlade <- sprWheelerBlade
+::sprShiveriken <- newSprite("res/gfx/shiveriken.png", 24, 24, 0, 0, 12, 14)
+::defShiveriken <- sprShiveriken
 
 
 //Bosses
@@ -361,7 +374,7 @@
 ::bgRiverCity <- newSprite("res/gfx/rivercity.png", 380, 240, 0, 0, 0, 0)
 ::bgOcean <- newSprite("res/gfx/ocean.png", 480, 8, 0, 0, 0, 0)
 ::bgForest0 <- newSprite("res/gfx/forest0.png", 128, 180, 0, 0, 0, 0)
-::bgForest1 <- newSprite("res/gfx/forest1.png", 128, 180, 0, 0, 0, 0)
+::bgForest1 <- newSprite("res/gfx/forest1.png", 128, 240, 0, 0, 0, 0)
 ::bgWoodedMountain <- newSprite("res/gfx/woodedmountain.png", 720, 240, 0, 0, 0, 0)
 ::bgStarSky <- newSprite("res/gfx/starysky.png", 240, 240, 0, 0, 0, 0)
 ::bgUnderwater <- newSprite("res/gfx/underwaterbg.png", 424, 240, 0, 0, 0, 0)
@@ -538,6 +551,8 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprSmartTallCap = defSmartTallCap
 	sprCaptainMorel = defCaptainMorel
 	sprSnowCaptain = defSnowCaptain
+	sprBearyl = defBearyl
+	sprWheelerHamster = defWheelerHamster
 
 	sprNolok = defNolok
 	sprYeti = defYeti
@@ -593,6 +608,8 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprSmartTallCap = sprSnowoman
 	sprCrumbleRock = sprCrumbleIce
 	sprCaptainMorel = sprSnowCaptain
+	sprBearyl = sprSirCrusher
+	sprWheelerHamster = sprShiveriken
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)

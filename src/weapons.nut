@@ -26,7 +26,7 @@
 		base.constructor(_x, _y, _arr)
 		if(typeof _arr == "array") {
 			if(canint(_arr[0])) alignment = _arr[0].tointeger()
-			if(canint(_arr[1])) alignment = _arr[1].tointeger()
+			if(canint(_arr[1])) owner = _arr[1].tointeger()
 		}
 	}
 
@@ -202,8 +202,9 @@
 		shape = Rec(x, y, 4, 4, 0)
 		base.constructor(_x, _y, _arr)
 		vspeed = 0.5 - randFloat(1.0)
-		newActor(AfterFlame, x, y)
+		fireWeapon(AfterFlame, x, y, alignment, owner)
 	}
+
 	function run() {
 		angle = pointAngle(0, 0, hspeed, vspeed) - 90
 		frame += 0.2
@@ -282,6 +283,40 @@
 	function run() {
 		drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		frame += 0.2
+
+		if(frame >= 5) deleteActor(id)
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+				if(x < gvPlayer.x) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.8
+			}
+		}
+	}
+}
+
+::ExplodeHiddenF <- class extends WeaponEffect{
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	element = "fire"
+	power = 2
+	blast = true
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		stopSound(sndExplodeF)
+		playSound(sndExplodeF, 0)
+
+		shape = Cir(x, y, 12.0)
+	}
+
+	function run() {
+		//drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		//drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		frame += 0.2
 
 		if(frame >= 5) deleteActor(id)

@@ -362,6 +362,7 @@
 		base.constructor(_x, _y, _arr)
 		w = max(1, _arr[2].tointeger())
 		if(_arr.len() > 3 && getroottable().rawin(_arr[3])) sprite = getroottable()[_arr[3]]
+		if(_arr.len() > 3 && (_arr[3] == 0 || _arr[3] == "0")) sprite = 0
 		shape = Rec(x, y, w * 8, 4, 0)
 		//mapNewSolid(shape)
 	}
@@ -453,7 +454,7 @@
 					theta += (angleB - angleA) + 180
 					gvPlayer.hspeed = lendirX(mag, theta) * 1.5
 					gvPlayer.vspeed = lendirY(mag, theta) * 1.5
-					playerTeleport(shapeB.x + lendirX(16, angleB), shapeB.y + lendirY(16, angleB))
+					playerTeleport(shapeB.x + lendirX(gvPlayer.shape.w, angleB), shapeB.y + lendirY(gvPlayer.shape.h, angleB) - gvPlayer.shape.oy)
 					canWarp = false
 				}
 
@@ -463,7 +464,7 @@
 					theta += (angleA - angleB) + 180
 					gvPlayer.hspeed = lendirX(mag, theta) * 1.5
 					gvPlayer.vspeed = lendirY(mag, theta) * 1.5
-					playerTeleport(shapeA.x + lendirX(16, angleA), shapeA.y + lendirY(16, angleA))
+					playerTeleport(shapeA.x + lendirX(gvPlayer.shape.w, angleA), shapeA.y + lendirY(gvPlayer.shape.h, angleA) - gvPlayer.shape.oy)
 					canWarp = false
 				}
 			}

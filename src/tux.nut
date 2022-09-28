@@ -207,7 +207,7 @@
 		/////////////
 		// ON LAND //
 		/////////////
-		if(!inWater(x, y) || game.weapon == 4) {
+		if((!inWater(x, y) || game.weapon == 4) && resTime <= 0) {
 			swimming = false
 			shapeStand.h = 12.0
 			slippery = (anim == anDive || anim == anSlide || onIce())
@@ -422,7 +422,7 @@
 				else mspeed = 2.0
 				if(nowInWater) mspeed *= 0.8
 				if(anim == anCrawl) mspeed = 1.0
-				if(coffeeTime > 0) mspeed *= 2.0
+				if(zoomies > 0) mspeed *= 2.0
 
 				//Moving left and right
 				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
@@ -812,13 +812,13 @@
 					if(invincible) mspeed += 0.4
 				}
 				else mspeed = 1.0
+				if(zoomies > 0) mspeed *= 2.0
 
 				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed += 0.1
 				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed -= 0.1
 				if(getcon("down", "hold") && vspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed += 0.1
 				if(getcon("up", "hold") && vspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed -= 0.1
 			}
-			if(coffeeTime > 0) mspeed *= 2.0
 
 			//Friction
 			if(hspeed > 0) hspeed -= friction / 2
@@ -945,9 +945,8 @@
 			}
 		}
 
-		if(gvMap.w > 320) {
+		if(!gvCanWrap) {
 			if(x < 4) x = 4
-
 			if(x > gvMap.w - 4) x = gvMap.w - 4
 		} else x = wrap(x, 0, gvMap.w)
 
@@ -1111,13 +1110,18 @@
 	}
 
 	function die() {
+		if(resTime > 0) return
 		if(game.canres) {
 			game.health = game.maxHealth
 			blinking = 120
-			if(y > gvMap.h) playerTeleport(groundx, groundy)
-			game.canres = false
 			hspeed = 0.0
 			vspeed = 0.0
+			if(y > gvMap.h) {
+				invincible = 300
+				resTime = 300
+				vspeed = -4.0
+			}
+			game.canres = false
 		}
 		else {
 			deleteActor(id)
@@ -1176,7 +1180,7 @@
 				break
 			case 8:
 				popSound(sndGulp, 0)
-				coffeeTime += 60 * 30
+				zoomies = 60 * 30
 				game.subitem = 0
 				break
 		}
@@ -1217,11 +1221,65 @@
 ::Penny <- class extends Tux {
 	constructor(_x, _y, _arr = null){
 		base.constructor(_x, _y, _arr)
+
+		mySprNormal = sprPenny
+		mySprFire = sprPennyFire
+		mySprIce = sprPennyIce
+		mySprAir = sprPennyAir
+		mySprEarth = sprPennyEarth
 	}
 
-	mySprNormal = sprPenny
-	mySprFire = sprPennyFire
-	mySprIce = sprPennyIce
-	mySprAir = sprPennyAir
-	mySprEarth = sprPennyEarth
+	function _typeof() { return "Penny" }
+}
+
+::TuxRacer <- class extends PhysActor {
+	z = 0
+	mspeed = 2
+
+	anWalk = [8, 9, 10, 11, 12, 13, 14, 15]
+	anSlide = [80, 81, 82]
+	anHurt = [83]
+	anim = null
+	gravity = 0.0
+
+	constructor(_x, _y, _arr = null){
+		anim = anWalk
+	}
+
+	function run() {
+		//Acceleration
+		if(onIce(x, y)) mspeed = 4.0
+		else if(!placeFree(x, y)) mspeed = 1.0
+		else mspeed = 2.0
+
+		if(vspeed > -mspeed) vspeed -= 0.05
+		if(vspeed < -mspeed) vspeed += 0.1
+		if(vspeed < 1 && getcon("down", "hold")) vspeed += 0.05
+		if(hspeed > -1 && getcon("left", "hold")) hspeed -= 0.05
+		if(hspeed < 1 && getcon("right", "hold")) hspeed += 0.05
+
+		//Animation
+		local angle = 0
+		local frame = 0
+
+		switch(anim) {
+			case anWalk:
+				angle = 0
+				frame = wrap(getFrames() / 16, 0, 8)
+				break
+			case anSlide:
+				angle = pointAngle(0, 0, hspeed, vspeed)
+				frame = 1 - getcon("left", "hold").tointeger() + getcon("right", "hold")
+				break
+			case anHurt:
+				angle = pointAngle(0, 0, hspeed, vspeed) + 180
+				frame = 0
+				break
+		}
+
+		//Draw
+		drawSpriteEx(sprTux, anim[frame])
+	}
+
+	function _typeof() { return "TuxRacer" }
 }

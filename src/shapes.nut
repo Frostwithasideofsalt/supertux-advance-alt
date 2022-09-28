@@ -17,7 +17,7 @@
 	ox = 0.0
 	oy = 0.0
 
-	constructor(_x, _y, _w, _h, _kind, _ox = 0.0, _oy = 0.0) {
+	constructor(_x, _y, _w, _h, _kind = 0, _ox = 0.0, _oy = 0.0) {
 		x = _x.tofloat()
 		y = _y.tofloat()
 		w = _w.tofloat()
@@ -88,6 +88,7 @@
 		case "Rec":
 			switch(typeof b) {
 				case "Rec":
+					//Make sure that rectangle bounding boxes are touching
 					if(abs(a.x - b.x) > abs(a.w + b.w)) return false
 					if(abs(a.y - b.y) > abs(a.h + b.h)) return false
 
