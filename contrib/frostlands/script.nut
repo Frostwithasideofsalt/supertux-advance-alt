@@ -65,6 +65,7 @@ print("Loading Frostlands overhauled PT2")
 ::sprTheo <- newSprite("contrib/frostlands/gfx/NPC/Theo.png", 21, 47, 0, 0, 10, 47)
 ::sprMPlayer <- newSprite("contrib/frostlands/gfx/NPC/minetest-player.png", 16, 33, 0, 0, 8, 33)
 ::sprWallBaller <- newSprite("contrib/frostlands/gfx/NPC/wall-crawler.png", 32, 32, 0, 0, 16, 32)
+::sprOceanPants <- newSprite("contrib/frostlands/gfx/NPC/OceanPants.png", 20, 53, 0, 0, 10, 53)
 
 //OG style
 ::sprFlowerFireOG <- newSprite("contrib/frostlands/gfx/obj/fl-fireflower.png", 16, 16, 0, 0, 8, 8)
