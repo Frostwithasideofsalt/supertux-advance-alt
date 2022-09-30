@@ -14,9 +14,9 @@
 		"fw-t1" : "Chill docks",
 		"fw-t2" : "Doll shrine",
 		"fw-t3" : "Ice-burg",
-		"fw-t4" : "Lost tower",
-		"fw-t5" : "idk what to call this either :v",
-		"fw-t6" : "awesome placeholder name",
+		"fw-t4" : "The Lost tower",
+		"fw-t5" : "Town by the Sea",
+		"fw-t6" : "uhhhh what?",
 		"fw-s" : "Into the void",
 		"fw-1" : "Noted",
 		"fw-2" : "Roots",
@@ -81,6 +81,8 @@
 		"After eating one of those popsicles, I don't feel too good....",
 		"placeholder" :
 		"This is placeholder text",
+		"newtown" :
+		"Hey, my brother needs to tell you something important. He's at the far right of the town.",
 		"W-Baller" :
 		"wall baller                                                                                                                                                                     ?"
 		},
