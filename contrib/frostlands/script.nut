@@ -83,6 +83,7 @@ print("Loading Frostlands overhauled PT2")
 ::sprCoinN5 <- newSprite("contrib/frostlands/gfx/obj/coin-n5.png", 16, 16, 0, 0, 8, 8)
 ::sprCoinN10 <- newSprite("contrib/frostlands/gfx/obj/coin-n10.png", 16, 16, 0, 0, 8, 8)
 ::sprEmptyBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-emptybox.png", 16, 16, 0, 0, 0, 0)
+::sprJumpyOG <- newSprite("contrib/frostlands/gfx/enemies/fl-jumpy.png", 16, 25, 0, 0, 8, 8)
 
 ::sprHealthFL <- newSprite("contrib/frostlands/gfx/fl-health.png", 16, 16, 0, 0, 0, 0)
 ::sprEnergyFl <- newSprite("contrib/frostlands/gfx/fl-energy.png", 16, 16, 0, 0, 0, 0)
@@ -100,6 +101,7 @@ print("Loading Frostlands overhauled PT2")
 	sprEarthShell = sprEarthShellOG
 	sprStar = sprStarOG
 	sprDarkStar = sprDarkOG
+	sprJumpy = sprJumpyOG
 
 	sprBoxInfo = sprInfoBoxOG
 	sprBoxItem = sprItemBoxOG
