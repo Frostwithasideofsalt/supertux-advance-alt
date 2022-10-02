@@ -40,6 +40,8 @@ print("Loading Frostlands overhauled PT2")
 ::bgForestday <- newSprite("contrib/frostlands/gfx/BG/Forest-1.png", 720, 240, 0, 0, 0, 0)
 ::bgForesttree1<- newSprite("contrib/frostlands/gfx/BG/forest-2.png", 720, 240, 0, 0, 0, 0)
 ::bgForesttree2 <- newSprite("contrib/frostlands/gfx/BG/forest-3.png", 720, 240, 0, 0, 0, 0)
+::bgOceanF1 <- newSprite("contrib/frostlands/gfx/BG/Ocean1.png", 720, 240, 0, 0, 0, 0)
+::bgOceanF2 <- newSprite("contrib/frostlands/gfx/BG/Ocean2.png", 720, 240, 0, 0, 0, 0)
 //tropic
 ::bgFtropic <- newSprite("contrib/frostlands/gfx/BG/TropicalF.png", 720, 240, 0, 0, 0, 0)
 ::bgFtropic2 <- newSprite("contrib/frostlands/gfx/BG/TropicalFsun.png", 720, 240, 0, 0, 0, 0)
@@ -200,6 +202,15 @@ print("Loading Frostlands overhauled PT2")
 
 }
 
+::dbgOceanF <- function() {
+	drawSprite(bgFtropic2, 0, 0, (screenH() / 2) - 120)
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgFtropic0, 0, ((-camx / 32) % 720) + (i * 720), (screenH() / 2) - 60)
+	}
+	drawSprite(bgOceanF1, 0, 0, (screenH() / 2) - 120)
+
+}
+
 ::dbgtropicS <- function() {
 	drawSprite(bgFtropic2, 0, 0, (screenH() / 2) - 120)
 	for(local i = 0; i < 2; i++) {
@@ -211,25 +222,7 @@ print("Loading Frostlands overhauled PT2")
 
 }
 
-::TNTALT <- class extends Actor {
-	shape = null
-	gothit = false
-	hittime = 0.0
-	frame = 0.0
-
-	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
-
-		shape = Rec(x, y, 10, 10, 0)
-		tileSetSolid(x, y, 1)
-	}
-
-	function run() {
-		drawSprite(sprC4, frame, x - 8 - camx, y - 8 - camy)
-	}
-
-	function _typeof() { return "TNTALT" }
-}
+//Objec lol 
 
 ::Spakle <- class extends Actor{
 	constructor(_x, _y, _arr = null)
@@ -308,7 +301,7 @@ print("Loading Frostlands overhauled PT2")
 	}
 }
 
-//TEMP
+//enemies
 
 ::Blitz <- class extends Enemy {
 	frame = 0.0
@@ -522,6 +515,6 @@ print("Loading Frostlands overhauled PT2")
 }
 
 
-//TEMPEND
+//hi kelvin lol
 
 print("Loaded Frostlands")
