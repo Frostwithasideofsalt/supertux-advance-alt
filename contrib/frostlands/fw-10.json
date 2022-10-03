@@ -3812,6 +3812,18 @@
                  "width":16,
                  "x":4800,
                  "y":416
+                }, 
+                {
+                 "class":"",
+                 "gid":24,
+                 "height":16,
+                 "id":1562,
+                 "name":"backgrounddevcom",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":160,
+                 "y":320
                 }],
          "opacity":0.9,
          "type":"objectgroup",
@@ -3820,7 +3832,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":1562,
+ "nextobjectid":1564,
  "orientation":"orthogonal",
  "properties":[
         {

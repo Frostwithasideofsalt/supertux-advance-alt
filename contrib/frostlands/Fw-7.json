@@ -2345,18 +2345,6 @@
                 }, 
                 {
                  "class":"",
-                 "gid":119,
-                 "height":16,
-                 "id":1143,
-                 "name":"StaticLight,sprLightFire,1",
-                 "rotation":0,
-                 "visible":true,
-                 "width":16,
-                 "x":32,
-                 "y":224
-                }, 
-                {
-                 "class":"",
                  "gid":81,
                  "height":16,
                  "id":1144,

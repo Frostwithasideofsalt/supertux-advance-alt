@@ -2635,6 +2635,18 @@
                  "width":16,
                  "x":2400,
                  "y":448
+                }, 
+                {
+                 "class":"",
+                 "gid":24,
+                 "height":16,
+                 "id":1623,
+                 "name":"blitzdevcom",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":96,
+                 "y":432
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2643,7 +2655,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":1623,
+ "nextobjectid":1624,
  "orientation":"orthogonal",
  "properties":[
         {
