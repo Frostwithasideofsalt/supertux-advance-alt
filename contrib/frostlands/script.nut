@@ -326,7 +326,7 @@ print("Loading Frostlands overhauled PT2")
 	function run() {
 		base.run()
 		smart = true
-		if(gvPlayer && abs(x - gvPlayer.x) <= 240 && frozen <= 0 && squish == false) {
+		if(gvPlayer && abs(x - gvPlayer.x) <= 160 && frozen <= 0 && squish == false && abs(y - gvPlayer.y) <= 160) {
 			if(getFrames() % 80 == 0){
 				local c = actor[newActor(CannonBob, x - 4, y - 4)]
 							c.hspeed = ((gvPlayer.x - x) / 48)
