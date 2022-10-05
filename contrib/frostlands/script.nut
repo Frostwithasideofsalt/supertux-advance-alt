@@ -41,13 +41,21 @@ print("Loading Frostlands overhauled PT2")
 ::bgForesttree1<- newSprite("contrib/frostlands/gfx/BG/forest-2.png", 720, 240, 0, 0, 0, 0)
 ::bgForesttree2 <- newSprite("contrib/frostlands/gfx/BG/forest-3.png", 720, 240, 0, 0, 0, 0)
 ::bgOceanF1 <- newSprite("contrib/frostlands/gfx/BG/Ocean1.png", 720, 240, 0, 0, 0, 0)
-::bgOceanF2 <- newSprite("contrib/frostlands/gfx/BG/Ocean2.png", 720, 240, 0, 0, 0, 0)
+::bgOceanbg <- newSprite("contrib/frostlands/gfx/BG/ForestFsun.png", 720, 240, 0, 0, 0, 0)
+::bgOceancloud <- newSprite("contrib/frostlands/gfx/BG/OceanCF.png", 720, 240, 0, 0, 0, 0)
 //tropic
 ::bgFtropic <- newSprite("contrib/frostlands/gfx/BG/TropicalF.png", 720, 240, 0, 0, 0, 0)
 ::bgFtropic2 <- newSprite("contrib/frostlands/gfx/BG/TropicalFsun.png", 720, 240, 0, 0, 0, 0)
 ::bgFtropic3 <- newSprite("contrib/frostlands/gfx/BG/TropicalF2.png", 720, 240, 0, 0, 0, 0)
 ::bgFtropic0 <- newSprite("contrib/frostlands/gfx/BG/TropicalF0.png", 720, 240, 0, 0, 0, 0)
 ::bgFtropicM <- newSprite("contrib/frostlands/gfx/BG/tropics-mountans.png", 720, 240, 0, 0, 0, 0)
+
+::bgFtropicSunset <- newSprite("contrib/frostlands/gfx/BG/TropicalSF.png", 720, 240, 0, 0, 0, 0)
+::bgFtropicSunset2 <- newSprite("contrib/frostlands/gfx/BG/TropicalSF2.png", 720, 240, 0, 0, 0, 0)
+
+::bgFtropicNight <- newSprite("contrib/frostlands/gfx/BG/TropicalNF.png", 720, 240, 0, 0, 0, 0)
+::bgFtropicNight2 <- newSprite("contrib/frostlands/gfx/BG/TropicalNF2.png", 720, 240, 0, 0, 0, 0)
+::bgNightcloud <- newSprite("contrib/frostlands/gfx/BG/OceanNF.png", 720, 240, 0, 0, 0, 0)
 
 //NPCS
 ::sprTinyFireGuinb <- newSprite("contrib/frostlands/gfx/NPC/ash.png", 13, 23, 0, 0, 6, 23)
@@ -204,12 +212,41 @@ print("Loading Frostlands overhauled PT2")
 
 }
 
-::dbgOceanF <- function() {
-	drawSprite(bgFtropic2, 0, 0, (screenH() / 2) - 120)
+::dbgtropicFS <- function() {
+	drawSprite(bgOceanbg, 0, 0, (screenH() / 2) - 120)
 	for(local i = 0; i < 2; i++) {
-		drawSprite(bgFtropic0, 0, ((-camx / 32) % 720) + (i * 720), (screenH() / 2) - 60)
+		drawSprite(bgOceancloud, 0, ((-camx / 32) % 720) + (i * 720), (screenH() / 2) - 120)
 	}
-	drawSprite(bgOceanF1, 0, 0, (screenH() / 2) - 120)
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgFtropicSunset, 0, ((-camx / 16) % 720) + (i * 720), (screenH() / 2) - 120)
+	}
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgFtropicSunset2, 0, ((-camx / 10) % 720) + (i * 720), (screenH() / 2) - 80)
+	}
+
+}
+
+::dbgtropicNS <- function() {
+	drawSprite(bgForestday, 0, 0, (screenH() / 2) - 120)
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgNightcloud, 0, ((-camx / 32) % 720) + (i * 720), (screenH() / 2) - 120)
+	}
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgFtropicNight, 0, ((-camx / 16) % 720) + (i * 720), (screenH() / 2) - 120)
+	}
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgFtropicNight2, 0, ((-camx / 10) % 720) + (i * 720), (screenH() / 2) - 80)
+	}
+
+}
+
+
+
+::dbgOceanF <- function() {
+	drawSprite(bgOceanbg, 0, 0, (screenH() / 2) - 120)
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgOceancloud, 0, ((-camx / 32) % 720) + (i * 720), (screenH() / 2) - 60)
+	}
 
 }
 
