@@ -222,7 +222,7 @@
                  "class":"",
                  "height":133.333333333333,
                  "id":1148,
-                 "name":"endGoal()",
+                 "name":"endGoal(\"fw-6\")",
                  "rotation":0,
                  "visible":true,
                  "width":17,
@@ -3101,7 +3101,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgForestF\nsongPlay(musDisko)\ngfxOverrideFL()\ndrawWeather = dweRain"
+         "value":"drawBG = dbgForestF\nsongPlay(musDisko)\ngfxOverrideFL()\ndrawWeather = dweRain\ngvLightTarget = 0x6080e0ff"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",

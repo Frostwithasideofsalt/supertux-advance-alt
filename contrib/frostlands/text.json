@@ -126,13 +126,13 @@
 
 	"achi-name" : {
 		"welcomeFrostlands" : "A new world",
-		"SecretFrostlands" : "Cold completonist",
+		"SecretFrostlands" : "REMOVED ACHIVMENT",
 		"CompleteFrostlands" : "End of an adventure"
 	},
 
 	"achi-desc" : {
 		"welcomeFrostlands" : "Play the Frostlands for the first time.",
-		"SecretFrostlands" : "Kill all enemies, Collect all Coins, and find all secrets in all levels.",
+		"SecretFrostlands" : "removed achivment",
 		"CompleteFrostlands" : "Complete all frostlands levels, including the secret ones."
 	}
 }

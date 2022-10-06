@@ -350,7 +350,7 @@
                  "class":"",
                  "height":304,
                  "id":832,
-                 "name":"endGoal()",
+                 "name":"endGoal(\"fw-3\")",
                  "rotation":0,
                  "visible":true,
                  "width":16,

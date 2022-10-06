@@ -254,7 +254,7 @@
                  "class":"",
                  "height":384,
                  "id":896,
-                 "name":"endGoal()",
+                 "name":"endGoal(\"fw-7\")",
                  "rotation":0,
                  "visible":true,
                  "width":17,
@@ -1286,7 +1286,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgForestF\nsongPlay(musRace)\ngfxOverrideFL()"
+         "value":"drawBG = dbgForestF\nsongPlay(musRace)\ngfxOverrideFL()\ndrawWeather = 0"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",

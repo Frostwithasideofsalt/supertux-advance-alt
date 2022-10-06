@@ -5,10 +5,4 @@ gvAchievements.welcomeFrostlands <- function() {
 	return (game.path == "contrib/frostlands/")
 }
 
-gvAchievements.SecretFrostlands <- function() {
-	return (game.path == "contrib/frostlands/")
-}
-
-gvAchievements.CompleteFrostlands <- function() {
-	return (game.path == "contrib/frostlands/")
-}
+//I would have added more achivments but i lack the time to add more aaaaaaaaaaaaaaaaaaaaaaaaaaaaa

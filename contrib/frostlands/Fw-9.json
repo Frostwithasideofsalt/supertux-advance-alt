@@ -366,7 +366,7 @@
                  "class":"",
                  "height":560.667,
                  "id":999,
-                 "name":"endGoal()",
+                 "name":"endGoal(\"fw-10\")",
                  "rotation":0,
                  "visible":true,
                  "width":41,
@@ -4338,7 +4338,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgAuroraF\nsongPlay(musDisko)\ngfxOverrideFL()"
+         "value":"drawBG = dbgAuroraF\nsongPlay(musDisko)\ngfxOverrideFL()\ngvLightTarget = 0xc080e0ff"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",

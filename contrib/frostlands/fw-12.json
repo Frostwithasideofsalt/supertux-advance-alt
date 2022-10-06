@@ -711,7 +711,7 @@
                  "class":"",
                  "height":539,
                  "id":325,
-                 "name":"endGoal()",
+                 "name":"endGoal(\"fw-13\")",
                  "rotation":0,
                  "visible":true,
                  "width":44,

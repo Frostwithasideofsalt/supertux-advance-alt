@@ -523,7 +523,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgtropicNS\nsongPlay(musAirship)\ngfxOverrideFL()"
+         "value":"drawBG = dbgtropicNS\nsongPlay(musAirship)\ngfxOverrideFL()\ngvLightTarget = 0x6080e0ff"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",

@@ -340,7 +340,7 @@
                  "class":"",
                  "height":539,
                  "id":1467,
-                 "name":"endGoal()",
+                 "name":"endGoal(\"fw-11\")",
                  "rotation":0,
                  "visible":true,
                  "width":44,
@@ -3867,7 +3867,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgtropicf\nsongPlay(musAirship)\ngfxOverrideFL()"
+         "value":"drawBG = dbgtropicf\nsongPlay(musAirship)\ngfxOverrideFL()\ngvLightTarget = 0xffffffff"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",

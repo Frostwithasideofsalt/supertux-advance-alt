@@ -250,7 +250,7 @@
                  "class":"",
                  "height":384,
                  "id":588,
-                 "name":"endGoal()",
+                 "name":"endGoal(\"fw-2\")",
                  "rotation":0,
                  "visible":true,
                  "width":17,
