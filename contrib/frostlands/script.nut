@@ -18,10 +18,8 @@ print("Loading Frostlands overhauled PT2")
 ::musRS <- "contrib/frostlands/music/Rough-Start.ogg"
 
 //visual assets
-::bgSnowPlainALT <- newSprite("contrib/frostlands/gfx/BG/bgSnowPlain-alt.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowNever <- newSprite("contrib/frostlands/gfx/BG/Anever.png", 720, 240, 0, 0, 0, 0)
 ::bgGrassNever <- newSprite("contrib/frostlands/gfx/BG/Bnever.png", 1024, 240, 0, 0, 0, 0)
-::bgNightAlt <- newSprite("contrib/frostlands/gfx/BG/bgSnowNight-alt.png", 720, 240, 0, 0, 0, 0)
 ::bgRace <- newSprite("contrib/frostlands/gfx/BG/tuxracer.png", 520, 240, 0, 0, 0, 0)
 ::bgRace2 <- newSprite("contrib/frostlands/gfx/BG/tuxracer2.png", 520, 240, 0, 0, 0, 0)
 ::bgError <- newSprite("contrib/frostlands/gfx/BG/glitch.png", 1140, 240, 0, 0, 0, 0)
@@ -34,13 +32,13 @@ print("Loading Frostlands overhauled PT2")
 ::bgSnowday <- newSprite("contrib/frostlands/gfx/BG/Snow-day.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowDusk <- newSprite("contrib/frostlands/gfx/BG/Snow-dusk.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowstars2 <- newSprite("contrib/frostlands/gfx/BG/Snow-stars2.png", 720, 240, 0, 0, 0, 0)
+::bgSnowstars3 <- newSprite("contrib/frostlands/gfx/BG/Snow-stars-moon.png", 720, 240, 0, 0, 0, 0)
 ::bgPlainHill <- newSprite("contrib/frostlands/gfx/BG/plain-hill.png", 720, 240, 0, 0, 0, 0)
 ::bgPlainill2 <- newSprite("contrib/frostlands/gfx/BG/plain-hill1.png", 720, 240, 0, 0, 0, 0)
 //forest
 ::bgForestday <- newSprite("contrib/frostlands/gfx/BG/Forest-1.png", 720, 240, 0, 0, 0, 0)
 ::bgForesttree1<- newSprite("contrib/frostlands/gfx/BG/forest-2.png", 720, 240, 0, 0, 0, 0)
 ::bgForesttree2 <- newSprite("contrib/frostlands/gfx/BG/forest-3.png", 720, 240, 0, 0, 0, 0)
-::bgOceanF1 <- newSprite("contrib/frostlands/gfx/BG/Ocean1.png", 720, 240, 0, 0, 0, 0)
 ::bgOceanbg <- newSprite("contrib/frostlands/gfx/BG/ForestFsun.png", 720, 240, 0, 0, 0, 0)
 ::bgOceancloud <- newSprite("contrib/frostlands/gfx/BG/OceanCF.png", 720, 240, 0, 0, 0, 0)
 //tropic
@@ -178,9 +176,7 @@ print("Loading Frostlands overhauled PT2")
 }
 
 ::dbgNightalt <- function() {
-	for(local i = 0; i < 2; i++) {
-		drawSprite(bgSnowstars2, 0, ((-camx / 16) % 720) + (i * 720), (screenH() / 2) - 120)
-	}
+	drawSprite(bgSnowstars2, 0, 0, (screenH() / 2) - 120)
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgStarHill, 0, ((-camx / 8) % 720) + (i * 720), (screenH() / 2) - 120)
 	}
