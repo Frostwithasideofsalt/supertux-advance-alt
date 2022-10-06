@@ -227,7 +227,7 @@ print("Loading Frostlands overhauled PT2")
 }
 
 ::dbgtropicNS <- function() {
-	drawSprite(bgForestday, 0, 0, (screenH() / 2) - 120)
+	drawSprite(bgSnowstars2, 0, 0, (screenH() / 2) - 120)
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgNightcloud, 0, ((-camx / 32) % 720) + (i * 720), (screenH() / 2) - 120)
 	}
