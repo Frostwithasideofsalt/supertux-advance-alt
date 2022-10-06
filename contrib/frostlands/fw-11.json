@@ -3012,8 +3012,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":16,
-                 "x":5296,
-                 "y":368
+                 "x":5104,
+                 "y":416
                 }, 
                 {
                  "class":"",
@@ -3024,8 +3024,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":16,
-                 "x":5328,
-                 "y":368
+                 "x":5136,
+                 "y":416
                 }, 
                 {
                  "class":"",
@@ -3814,7 +3814,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":2050,
+ "nextobjectid":2051,
  "orientation":"orthogonal",
  "properties":[
         {
