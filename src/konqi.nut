@@ -387,6 +387,7 @@
 					break
 			}
 
+			if(anim == anStand && zoomies) frame += 0.1
 			if(anim != anClimb) frame = wrap(abs(frame), 0.0, anim.len() - 1)
 
 			//Sliding acceleration
@@ -866,7 +867,7 @@
 					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
-						local c = actor[newActor(Fireball, x + fx, y - 4)]
+						local c = fireWeapon(Fireball, x + fx, y - 4, 1, id)
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
 						playSound(sndFireball, 0)
@@ -899,7 +900,7 @@
 					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
-						local c = actor[newActor(Iceball, x + fx, y)]
+						local c = fireWeapon(Iceball, x + fx, y, 1, id)
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
 						playSound(sndFireball, 0)
@@ -1082,6 +1083,9 @@
 				setDrawColor(0x008000ff)
 				shape.draw()
 			}
+
+			//After image
+			if((zoomies > 0 || anim == anStomp) && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, anim[frame], 0, flip, 0, 1, 1])
 		}
 
 		//Transformation flash

@@ -40,7 +40,7 @@
 
 
 
-::sprPenny <- newSprite("res/gfx/penny.png", 32, 32, 0, 0, 16, 16)
+::sprPenny <- newSprite("res/gfx/penny.png", 32, 32, 0, 0, 16, 19)
 
 
 
@@ -160,11 +160,15 @@
 ::sprDuke <- newSprite("res/gfx/duke.png", 32, 32, 0, 0, 16, 32)
 ::sprPenguinNPC <- newSprite("res/gfx/penguin-npc.png", 14, 23, 0, 0, 7, 23)
 ::sprBearistaNPC <- newSprite("res/gfx/bearista.png", 21, 37, 0, 0, 10, 37)
+::sprTixNPC <- newSprite("res/gfx/tix.png", 10, 16, 0, 0, 5, 16)
+::sprPenguinBuilderNPC <- newSprite("res/gfx/penguin-builder-npc.png", 14, 27, 0, 0, 7, 27)
 
 
 //Enemies
 ::sprSnake <- newSprite("res/gfx/snake.png", 16, 32, 0, 0, 8, 0)
 ::defSnake <- sprSnake
+::sprSealion <- newSprite("res/gfx/sealion.png", 16, 48, 0, 0, 8, 0)
+::defSealion <- sprSealion
 ::sprDeathcap <- newSprite("res/gfx/deathcap.png", 16, 16, 0, 0, 8, 9)
 ::defDeathcap <- sprDeathcap
 ::sprGradcap <- newSprite("res/gfx/smartcap.png", 16, 18, 0, 0, 8, 11)
@@ -387,6 +391,8 @@
 ::bgIceForest2 <- newSprite("res/gfx/iceforest2.png", 480, 192, 0, 0, 0, 0)
 ::bgFortMagma <- newSprite("res/gfx/fortmagmasky.png", 960, 240, 0, 0, 0, 0)
 ::bgCharSel <- newSprite("res/gfx/charsel.png", 424, 240, 0, 0, 212, 0)
+::bgPennyton0 <- newSprite("res/gfx/pennyton-bg-0.png", 480, 112, 0, 0, 0, 0)
+::bgPennyton1 <- newSprite("res/gfx/pennyton-bg-1.png", 480, 74, 0, 0, 0, 0)
 
 
 //Weather
@@ -610,6 +616,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprCaptainMorel = sprSnowCaptain
 	sprBearyl = sprSirCrusher
 	sprWheelerHamster = sprShiveriken
+	sprSnake = sprSealion
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)

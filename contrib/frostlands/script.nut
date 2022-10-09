@@ -94,6 +94,11 @@ print("Loading Frostlands overhauled PT2")
 ::sprCoinN10 <- newSprite("contrib/frostlands/gfx/obj/coin-n10.png", 16, 16, 0, 0, 8, 8)
 ::sprEmptyBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-emptybox.png", 16, 16, 0, 0, 0, 0)
 ::sprJumpyOG <- newSprite("contrib/frostlands/gfx/enemies/fl-jumpy.png", 16, 25, 0, 0, 8, 8)
+::sprCoinOG <- newSprite("contrib/frostlands/gfx/obj/fl-coin.png", 16, 16, 0, 0, 8, 8)
+::sprCoin5OG <- newSprite("contrib/frostlands/gfx/obj/fl-coin5.png", 16, 16, 0, 0, 8, 8)
+::sprCoin10OG <- newSprite("contrib/frostlands/gfx/obj/fl-coin10.png", 16, 16, 0, 0, 8, 8)
+::sprnewicons <- newSprite("contrib/frostlands/gfx/levelicons.png", 16, 16, 0, 0, 8, 8)
+::sprBellfl <- newSprite("contrib/frostlands/gfx/obj/bell-fl.png", 16, 16, 0, 0, 8, 8)
 
 ::sprHealthFL <- newSprite("contrib/frostlands/gfx/fl-health.png", 16, 16, 0, 0, 0, 0)
 ::sprEnergyFl <- newSprite("contrib/frostlands/gfx/fl-energy.png", 16, 16, 0, 0, 0, 0)
@@ -117,13 +122,17 @@ print("Loading Frostlands overhauled PT2")
 	sprBoxItem = sprItemBoxOG
 	sprBoxEmpty = sprEmptyBoxOG
 	sprBoxRed = sprTriggerBoxOG
-
+	sprCoin = sprCoinOG
+	sprCoin5 = sprCoin5OG
+	sprCoin10 = sprCoin10OG
 	sprHealth = sprHealthFL
 	sprEnergy = sprEnergyFl
 	sprSubItem = sprSubItemFL
 	sprColorSwitch = sprColorSwitchFL
 	sprColorBlock = sprColorBlockFL
-
+	sprLevels = sprnewicons
+	sprCheckBell = sprBellfl
+	
 	if(never) {
 		sprCoin = sprCoinN1
 		sprCoin5 = sprCoinN5
