@@ -2642,7 +2642,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgNightalt\nsongPlay(musRace)\ngfxOverrideFL()\ngvLightTarget = 0x6080e0ff"
+         "value":"drawBG = dbgNightalt\nsongPlay(musRace)\ngfxOverrideFL()\ngvLightTarget = 0xffffffff"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",
