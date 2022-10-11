@@ -2,7 +2,7 @@
 | GLOBAL VARIABLES |
 \*================*/
 
-::gvVersion <- "0.1.3 UNSTABLE"
+::gvVersion <- "0.2.0 UNSTABLE"
 ::gvMap <- 0
 ::gvGameMode <- 0
 ::gvQuit <- false
@@ -61,16 +61,15 @@
 				wave = [40, 41]
 			}
 			Penny = {
-				over = "sprTuxOverworld"
-				doll = "sprTuxDoll"
+				over = "sprPennyOverworld"
+				doll = "sprPennyDoll"
 				normal = "sprPenny"
-				fire = "sprTuxFire"
+				fire = "sprPennyFire"
 				ice = "sprTuxIce"
 				air = "sprTuxAir"
 				earth = "sprTuxEarth"
 				wave = [40, 41]
 			}
-			//Konqi = ["sprKonqiOverworld", "sprKonqiDoll", "sprKonqi", [8, 9]]
 		}
 		secretOrbs = [
 			false,
@@ -160,13 +159,22 @@
 
 ::contribDidRun <- {}
 
+//Screen related variables
 ::gvScreen <- 0
 ::gvPlayScreen <- 0
+::gvPlayScreen2 <- 0
+::gvSplitScreen <- false
 ::camx <- 0
 ::camy <- 0
+::camx1 <- 0
+::camy1 <- 0
+::camx2 <- 0
+::camy2 <- 0
 ::camxprev <- 0
 ::camyprev <- 0
 ::gvTextW <- 0
+::gvScreenW <- 0
+::gvScreenH <- 0
 
 //Debug variabls
 ::gvFPS <- 0
