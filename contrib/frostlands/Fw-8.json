@@ -2101,18 +2101,6 @@
                 }, 
                 {
                  "class":"",
-                 "gid":263,
-                 "height":16,
-                 "id":1450,
-                 "name":"Blazeborn",
-                 "rotation":0,
-                 "visible":true,
-                 "width":16,
-                 "x":5824,
-                 "y":368
-                }, 
-                {
-                 "class":"",
                  "gid":231,
                  "height":16,
                  "id":1451,
@@ -2278,18 +2266,6 @@
                  "width":16,
                  "x":5952,
                  "y":368
-                }, 
-                {
-                 "class":"",
-                 "gid":263,
-                 "height":16,
-                 "id":1476,
-                 "name":"Blazeborn",
-                 "rotation":0,
-                 "visible":true,
-                 "width":16,
-                 "x":6384,
-                 "y":432
                 }, 
                 {
                  "class":"",
@@ -2818,6 +2794,18 @@
                  "width":16,
                  "x":32,
                  "y":304
+                }, 
+                {
+                 "class":"",
+                 "gid":264,
+                 "height":16,
+                 "id":1548,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":5648,
+                 "y":400
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2826,7 +2814,7 @@
          "y":0
         }],
  "nextlayerid":20,
- "nextobjectid":1546,
+ "nextobjectid":1549,
  "orientation":"orthogonal",
  "properties":[
         {

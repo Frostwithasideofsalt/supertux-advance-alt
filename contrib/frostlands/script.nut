@@ -587,6 +587,7 @@ print("Loading Frostlands overhauled PT2")
 
 	function run() {
 		base.run()
+		smart = true
 
 		if(active) {
 			if(!moving) {

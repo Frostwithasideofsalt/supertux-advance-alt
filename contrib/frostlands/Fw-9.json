@@ -2966,18 +2966,6 @@
                 }, 
                 {
                  "class":"",
-                 "gid":65,
-                 "height":16,
-                 "id":1014,
-                 "name":"Blazeborn",
-                 "rotation":0,
-                 "visible":true,
-                 "width":16,
-                 "x":352,
-                 "y":624
-                }, 
-                {
-                 "class":"",
                  "gid":66,
                  "height":16,
                  "id":1016,
@@ -3489,7 +3477,7 @@
                  "rotation":0,
                  "visible":true,
                  "width":16,
-                 "x":96,
+                 "x":48,
                  "y":528
                 }, 
                 {
@@ -4295,15 +4283,51 @@
                  "width":16,
                  "x":2176,
                  "y":544
+                }, 
+                {
+                 "class":"",
+                 "gid":24,
+                 "height":16,
+                 "id":1165,
+                 "name":"livetut",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":96,
+                 "y":528
+                }, 
+                {
+                 "class":"",
+                 "gid":68,
+                 "height":16,
+                 "id":1166,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":7792,
+                 "y":560
+                }, 
+                {
+                 "class":"",
+                 "gid":68,
+                 "height":16,
+                 "id":1167,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":352,
+                 "y":624
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":1157,
+ "nextobjectid":1168,
  "orientation":"orthogonal",
  "properties":[
         {

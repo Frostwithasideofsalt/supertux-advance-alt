@@ -2621,7 +2621,7 @@
                  "rotation":0,
                  "visible":true,
                  "width":16,
-                 "x":96,
+                 "x":240,
                  "y":432
                 }, 
                 {
@@ -2779,6 +2779,18 @@
                  "width":16,
                  "x":1376,
                  "y":512
+                }, 
+                {
+                 "class":"",
+                 "gid":24,
+                 "height":16,
+                 "id":1643,
+                 "name":"blitztut",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":144,
+                 "y":432
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2787,7 +2799,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":1642,
+ "nextobjectid":1644,
  "orientation":"orthogonal",
  "properties":[
         {

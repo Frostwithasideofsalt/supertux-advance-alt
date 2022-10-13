@@ -703,18 +703,6 @@
                  "class":"",
                  "gid":57,
                  "height":16,
-                 "id":915,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":16,
-                 "x":432,
-                 "y":240
-                }, 
-                {
-                 "class":"",
-                 "gid":57,
-                 "height":16,
                  "id":916,
                  "name":"",
                  "rotation":0,
@@ -2858,6 +2846,30 @@
                  "width":16,
                  "x":16,
                  "y":240
+                }, 
+                {
+                 "class":"",
+                 "gid":78,
+                 "height":16,
+                 "id":1198,
+                 "name":"blazetut",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":416,
+                 "y":256
+                }, 
+                {
+                 "class":"",
+                 "gid":57,
+                 "height":16,
+                 "id":1199,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":432,
+                 "y":240
                 }],
          "opacity":0.97,
          "type":"objectgroup",
@@ -2866,7 +2878,7 @@
          "y":0
         }],
  "nextlayerid":20,
- "nextobjectid":1197,
+ "nextobjectid":1200,
  "orientation":"orthogonal",
  "properties":[
         {

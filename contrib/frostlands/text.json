@@ -33,8 +33,8 @@
 		"fw-13" : "Meltdown",
 		"fw-14" : "Last spark",
 		"B-1" : "NeverCity",
-		"B-2" : "freezing point",
-		"B-3" : "another's nostalgia",
+		"B-2" : "Freezing point",
+		"B-3" : "Another's nostalgia",
 		"B-4" : "Valley in the sky",
 		"fw-test" : "test"
 	},
@@ -55,7 +55,7 @@
 		"mark" :
 		"...",
 		"Frost" :
-		"Hey , I need to tell you something. Above the level roots, there's a few hidden levels. One of them even has a powerup not normally found in the frostlands, the air feather. go check it out",
+		"Hey, I need to tell you something. Above the level roots, there's a few hidden levels. One of them even has a powerup not normally found in the frostlands, the air feather. go check it out",
 		"mrq2" :
 		"Looks like something or someone is on the Burger place, I wonder how they got up there",
 		"mark2" :
@@ -118,7 +118,17 @@
 		"backgrounddevcom" :
 		"FrostC: It took me a long time to get the background of this level right. Earlier versions of the background looked awful.",
 		"blitzdevcom" :
-		"FrostC: This stage has a new enemy, known as mr.blitz. he launches cannonballs at you when you get close to him. He becomes very dangerous if your ever below him.",
+		"FrostC: Pro gamer tip; try to stay above mr.blitz, his attacks cant reach that far above him.",
+		"wildcaptut" :
+		"wildcaps are like deathcaps, but stronger. they deal more damage and are resistant to sliding.",
+		"blazetut" :
+		"The blazeborn is a fast moving enemy that's resistant to stomps and sliding. In order to kill it you will need a powerup.",
+		"livetut" :
+		"The livewire is a electric bomb with a tough shell and a large explosion. His tough shell makes it immune to fire and ice attacks. He can be ignited by being stomped on. And for those who didn't play the right path, The blazeborn is a fast moving fire enemy that's resistant to stomps and sliding. In order to kill it you will need a powerup.",
+		"blitztut" :
+		"Mr.Blitz is like a deathcap that shoots cannon balls. He can be very dangerous when left not dealt with, so make killing him your top priority!",
+		"bsodtut" :
+		"The bsod will release an electric charge when hit with fire, or ice. Being close to him while he's releasing a charge can be dangerous!",
 		"lololol" :
 		"FrostC: Made this level due to someone saying they wanted to see the air feather be used in Frostlands."
 		},
