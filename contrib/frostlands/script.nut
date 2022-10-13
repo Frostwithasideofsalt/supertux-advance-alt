@@ -5,13 +5,13 @@ print("Loading Frostlands overhauled PT2")
 //Enemy
 ::sprBlitz <- newSprite("contrib/frostlands/gfx/enemies/mrblitz.png", 16, 16, 0, 0, 8, 9)
 ::sprBlitz2 <- newSprite("contrib/frostlands/gfx/enemies/dumbblitz.png", 16, 16, 0, 0, 8, 9)
+::sprbsod <- newSprite("contrib/frostlands/gfx/enemies/bsod-Sheet.png", 23, 19, 0, 0, 11, 11)
 
 //music
 
 ::musfreeze <- "contrib/frostlands/music/freezingpoint.ogg"
-::musjt <- "contrib/frostlands/music/race1-jt.ogg"
+::musturn <- "contrib/frostlands/music/ji_turn.ogg"
 ::musball <- "contrib/frostlands/music/city-theme.ogg"
-::musballA <- "contrib/frostlands/music/grass-theme.ogg"
 ::mussal <- "contrib/frostlands/music/salcon.ogg"
 ::musair <- "contrib/frostlands/music/fried-air.ogg"
 ::musSUW <- "contrib/frostlands/music/STK-subsea.ogg"
@@ -24,6 +24,7 @@ print("Loading Frostlands overhauled PT2")
 ::bgRace2 <- newSprite("contrib/frostlands/gfx/BG/tuxracer2.png", 520, 240, 0, 0, 0, 0)
 ::bgError <- newSprite("contrib/frostlands/gfx/BG/glitch.png", 1140, 240, 0, 0, 0, 0)
 ::sprC1 <- newSprite("contrib/frostlands/gfx/effects/star1.png", 7, 7, 0, 0, 3, 3)
+::bgRedmond <- newSprite("contrib/frostlands/gfx/BG/Retro.png", 720, 240, 0, 0, 0, 0)
 //snow
 ::bgAuroraHill <- newSprite("contrib/frostlands/gfx/BG/hills-aurora1.png", 720, 240, 0, 0, 0, 0)
 ::bgAuroraHill1 <- newSprite("contrib/frostlands/gfx/BG/hills-aurora2.png", 720, 240, 0, 0, 0, 0)
@@ -171,6 +172,13 @@ print("Loading Frostlands overhauled PT2")
 		drawSprite(bgSnowNever, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
 	}
 }
+
+::dbgRedmond <- function() {
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgRedmond, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
+	}
+}
+
 
 ::dbgSnowPlainF <- function() {
 	for(local i = 0; i < 2; i++) {
@@ -546,6 +554,205 @@ print("Loading Frostlands overhauled PT2")
 		die()
 		stopSound(sndFlame)
 		playSound(sndFlame, 0)
+
+		if(randInt(20) == 0) {
+			local a = actor[newActor(MuffinBlue, x, y)]
+			a.vspeed = -2
+		}
+	}
+
+	function hurtIce() { frozen = 0 }
+
+	function _typeof() { return "Deathcap" }
+}
+
+::bsod <- class extends Enemy {
+	frame = 0.0
+	flip = false
+	squish = false
+	squishTime = 0.0
+	smart = false
+	moving = false
+	touchDamage = 2.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x.tofloat(), _y.tofloat())
+		shape = Rec(x, y, 6, 6, 0)
+
+		smart = _arr
+	}
+
+	function routine() {}
+	function animation() {}
+
+	function run() {
+		base.run()
+
+		if(active) {
+			if(!moving) {
+				if(gvPlayer && x > gvPlayer.x) flip = true
+				moving = true
+			}
+
+			if(!squish) {
+				if(placeFree(x, y + 1)) vspeed += 0.1
+				if(placeFree(x, y + vspeed)) y += vspeed
+				else vspeed /= 2
+
+				if(y > gvMap.h + 8) die()
+
+				if(!frozen) {
+					if(flip) {
+						if(placeFree(x - 1, y)) x -= 1.0
+						else if(placeFree(x - 2, y - 2)) {
+							x -= 1.0
+							y -= 1.0
+						} else if(placeFree(x - 1, y - 2)) {
+							x -= 1.0
+							y -= 1.0
+						} else flip = false
+
+						if(smart) if(placeFree(x - 6, y + 14) && !placeFree(x + 2, y + 14)) flip = false
+
+						if(x <= 0) flip = false
+					}
+					else {
+						if(placeFree(x + 1, y)) x += 1.0
+						else if(placeFree(x + 1, y - 1)) {
+							x += 1.0
+							y -= 1.0
+						} else if(placeFree(x + 2, y - 2)) {
+							x += 1.0
+							y -= 1.0
+						} else flip = true
+
+						if(smart) if(placeFree(x + 6, y + 14) && !placeFree(x - 2, y + 14)) flip = true
+
+						if(x >= gvMap.w) flip = true
+					}
+				}
+
+				if(frozen) {
+					//Create ice block
+					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+						if(health > 0) icebox = mapNewSolid(shape)
+					}
+
+					//Draw
+					if(smart) drawSpriteEx(sprbsod, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					else drawSpriteEx(sprbsod, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+					if(frozen <= 120) {
+					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+					}
+					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+				}
+				else {
+					//Delete ice block
+					if(icebox != -1) {
+						newActor(IceChunks, x, y)
+						mapDeleteSolid(icebox)
+						icebox = -1
+						if(gvPlayer) if(x > gvPlayer.x) flip = true
+						else flip = false
+					}
+
+					//Draw
+					if(smart) drawSpriteEx(sprbsod, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					else drawSpriteEx(sprbsod, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				}
+			}
+			else {
+				squishTime += 0.025
+				if(squishTime >= 1) die()
+				if(smart) drawSpriteEx(sprbsod, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSpriteEx(sprbsod, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			}
+
+			if(!squish) shape.setPos(x, y)
+			setDrawColor(0xff0000ff)
+			if(debug) shape.draw()
+		}
+	}
+
+	function hurtPlayer() {
+		if(blinking) return
+		if(squish) return
+		base.hurtPlayer()
+	}
+
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(squish) return
+
+		if(_blast) {
+			hurtblast()
+			return
+		}
+
+		if(_element == "fire") {
+			fireWeapon(ExplodeT, x, y, 0, id)
+			
+			return
+		}
+
+		if(_element == "ice") {
+			fireWeapon(ExplodeT, x, y, 0, id)
+			return
+		}
+
+		if(gvPlayer.rawin("anSlide")) {
+			if(gvPlayer.anim == gvPlayer.anSlide && hitTest(shape, gvPlayer.shape)) {
+				local c = newActor(DeadNME, x, y)
+				if(smart) actor[c].sprite = sprbsod
+				else actor[c].sprite = sprbsod
+				actor[c].vspeed = min(-fabs(gvPlayer.hspeed), -4)
+				actor[c].hspeed = (gvPlayer.hspeed / 16)
+				actor[c].spin = (gvPlayer.hspeed * 7)
+				actor[c].angle = 180
+				die()
+				popSound(sndKick, 0)
+				return
+			}
+		}
+
+		if(!_stomp) {
+			local c = newActor(DeadNME, x, y)
+			if(smart) actor[c].sprite = sprbsod
+			else actor[c].sprite = sprbsod
+			actor[c].vspeed = -4.0
+			actor[c].spin = 4
+			actor[c].angle = 180
+			die()
+			popSound(sndKick, 0)
+
+			if(randInt(20) == 0) {
+				local a = actor[newActor(MuffinBlue, x, y)]
+				a.vspeed = -2
+			}
+		} else popSound(sndSquish, 0)
+
+		squish = true
+		blinking = 120
+	}
+
+	function hurtblast() {
+		local c = newActor(DeadNME, x, y)
+		if(smart) actor[c].sprite = sprbsod
+		else actor[c].sprite = sprbsod
+		actor[c].vspeed = -4
+		actor[c].hspeed = (4 / 16)
+		actor[c].spin = (4 * 7)
+		actor[c].angle = 180
+		die()
+		popSound(sndKick, 0)
+		if(icebox != -1) mapDeleteSolid(icebox)
+	}
+
+	function hurtFire() {
+		newActor(Flame, x, y - 1)
+		die()
+		popSound(sndFlame, 0)
 
 		if(randInt(20) == 0) {
 			local a = actor[newActor(MuffinBlue, x, y)]
