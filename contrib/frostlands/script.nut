@@ -692,13 +692,13 @@ print("Loading Frostlands overhauled PT2")
 		}
 
 		if(_element == "fire") {
-			fireWeapon(ExplodeT, x, y, 0, id)
+			fireWeapon(ExplodeT, x + randInt(16) - randInt(16) y + randInt(16) - randInt(16), 0, id)
 			
 			return
 		}
 
 		if(_element == "ice") {
-			fireWeapon(ExplodeT, x, y, 0, id)
+			fireWeapon(ExplodeT, x + randInt(16) - randInt(16) y + randInt(16) - randInt(16), 0, id)
 			return
 		}
 
