@@ -12,7 +12,7 @@ print("Loading Frostlands overhauled PT2")
 ::musfreeze <- "contrib/frostlands/music/freezingpoint.ogg"
 ::musturn <- "contrib/frostlands/music/ji_turn.ogg"
 ::musball <- "contrib/frostlands/music/city-theme.ogg"
-::mussal <- "contrib/frostlands/music/salcon.ogg"
+::mussal <- "contrib/frostlands/music/salcont.ogg"
 ::musair <- "contrib/frostlands/music/fried-air.ogg"
 ::musSUW <- "contrib/frostlands/music/STK-subsea.ogg"
 ::musRS <- "contrib/frostlands/music/Rough-Start.ogg"

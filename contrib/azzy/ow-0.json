@@ -218,7 +218,7 @@
                  "id":29,
                  "name":"sn-l1a",
                  "rotation":0,
-                 "visible":false,
+                 "visible":true,
                  "width":16,
                  "x":144,
                  "y":320
@@ -307,12 +307,12 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }],
- "nextlayerid":6,
- "nextobjectid":37,
+ "nextlayerid":7,
+ "nextobjectid":38,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -321,7 +321,7 @@
          "value":"songPlay(musOverworld)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.2",
+ "tiledversion":"1.9.1",
  "tileheight":16,
  "tilesets":[
         {

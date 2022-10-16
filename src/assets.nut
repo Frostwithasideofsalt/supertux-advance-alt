@@ -44,6 +44,10 @@
 ::defPenny <- sprPenny
 ::sprPennyFire <- newSprite("res/gfx/pennyfire.png", 32, 32, 0, 0, 16, 19)
 ::defPennyFire <- sprPennyFire
+::sprPennyIce <- newSprite("res/gfx/pennyice.png", 32, 32, 0, 0, 16, 19)
+::defPennyIce <- sprPennyIce
+::sprPennyAir <- newSprite("res/gfx/pennyair.png", 32, 32, 0, 0, 16, 19)
+::defPennyAir <- sprPennyAir
 ::sprPennyOverworld <- newSprite("res/gfx/pennyO.png", 14, 17, 0, 0, 7, 14)
 ::defPennyOverworld <- sprPennyOverworld
 ::sprPennyDoll <- newSprite("res/gfx/pennydoll.png", 16, 16, 0, 0, 8, 8)
@@ -396,6 +400,7 @@
 ::bgAuroraNight <- newSprite("res/gfx/aurora-night.png", 720, 240, 0, 0, 0, 0)
 ::bgRiverCity <- newSprite("res/gfx/rivercity.png", 380, 240, 0, 0, 0, 0)
 ::bgOcean <- newSprite("res/gfx/ocean.png", 480, 8, 0, 0, 0, 0)
+::bgOceanNight <- newSprite("res/gfx/ocean-night.png", 480, 8, 0, 0, 0, 0)
 ::bgForest0 <- newSprite("res/gfx/forest0.png", 128, 180, 0, 0, 0, 0)
 ::bgForest1 <- newSprite("res/gfx/forest1.png", 128, 240, 0, 0, 0, 0)
 ::bgWoodedMountain <- newSprite("res/gfx/woodedmountain.png", 720, 240, 0, 0, 0, 0)
@@ -490,6 +495,10 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::musInvincible <- loadMusic("res/mus/invincible.ogg")
 
 ::songPlay <- function(song) {
+	if(song == 0) {
+		songStop()
+		return
+	}
 	gvMusicName = song
 	if(gvMusicName == gvLastSong) return
 
@@ -498,6 +507,12 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	playMusic(gvMusic, -1)
 
 	gvLastSong = song
+}
+
+::songStop <- function() {
+	stopMusic()
+	gvMusicName = 0
+	gvLastSong = 0
 }
 
 ::gfxReset <- function() {
