@@ -59,7 +59,7 @@ print("Loading Frostlands overhauled PT2")
 //NPCS
 ::sprTinyFireGuinb <- newSprite("contrib/frostlands/gfx/NPC/ash.png", 13, 23, 0, 0, 6, 23)
 ::sprRKO <- newSprite("contrib/frostlands/gfx/NPC/Rico.png", 18, 46, 0, 0, 9, 46)
-::sprmark <- newSprite("contrib/frostlands/gfx/NPC/mark.png", 63, 48, 0, 0, 32, 47)
+::sprmark <- newSprite("contrib/frostlands/gfx/NPC/mark.png", 66, 51, 0, 0, 33, 51)
 ::sprmarq <- newSprite("contrib/frostlands/gfx/NPC/marqies.png", 53, 40, 0, 0, 26, 40)
 ::sprEmarq <- newSprite("contrib/frostlands/gfx/NPC/evil.png", 60, 52, 0, 0, 30, 52)
 ::sprharo <- newSprite("contrib/frostlands/gfx/NPC/harold.png", 44, 43, 0, 0, 22, 43)
