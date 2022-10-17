@@ -291,25 +291,14 @@
                 }, 
                 {
                  "class":"",
-                 "height":53.333,
-                 "id":141,
-                 "name":"gvLightTarget = 0xe0b080ff",
-                 "rotation":0,
-                 "visible":true,
-                 "width":25.333,
-                 "x":1339.66666666667,
-                 "y":205
-                }, 
-                {
-                 "class":"",
-                 "height":61.5008385405498,
+                 "height":107.00083854055,
                  "id":142,
                  "name":"gvLightTarget = 0xffffffff",
                  "rotation":0,
                  "visible":true,
                  "width":49.1109999999999,
                  "x":1331.33333333333,
-                 "y":252.666666666667
+                 "y":207.166666666667
                 }, 
                 {
                  "class":"",

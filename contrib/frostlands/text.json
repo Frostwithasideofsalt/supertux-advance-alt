@@ -6,6 +6,8 @@
 		"Collect all the fish in this level to be able to reach the exit!",
 		"poo" :
 		"This level sucks.",
+		"Devcomintro" :
+		"Press f1 to see dev comments and breif run downs on what new enemies do.",
 		"Ftwo" :
 		"Blocks in the way aren't vanishing? That means you didn't collect all fish. Try again"
 	},
