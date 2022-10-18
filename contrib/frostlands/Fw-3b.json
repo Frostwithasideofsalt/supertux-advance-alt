@@ -7809,7 +7809,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgSnowPlainF\nsongPlay(musRace)\ngfxOverrideFL()\ngvLightTarget = 0xc080e0ff"
+         "value":"drawBG = dbgSnowPlainF\nsongPlay(musIceChip)\ngfxOverrideFL()\ngvLightTarget = 0xc080e0ff"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",

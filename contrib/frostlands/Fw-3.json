@@ -2648,7 +2648,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgSnowPlainF\nsongPlay(musDisko)\ngfxOverrideFL()\ngvLightTarget = 0xc080e0ff\n"
+         "value":"drawBG = dbgSnowPlainF\nsongPlay(musIceland)\ngfxOverrideFL()\ngvLightTarget = 0xc080e0ff\n"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",

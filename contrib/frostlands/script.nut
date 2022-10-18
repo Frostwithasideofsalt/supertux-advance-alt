@@ -101,7 +101,8 @@ print("Loading Frostlands overhauled PT2")
 ::sprCoin10OG <- newSprite("contrib/frostlands/gfx/obj/fl-coin10.png", 16, 16, 0, 0, 8, 8)
 ::sprnewicons <- newSprite("contrib/frostlands/gfx/levelicons.png", 16, 16, 0, 0, 8, 8)
 ::sprBellfl <- newSprite("contrib/frostlands/gfx/obj/bell-fl.png", 16, 16, 0, 0, 8, 8)
-::sprDevcom <- newSprite("contrib/frostlands/gfx/obj/kelvinscarf.png", 16, 16, 0, 0, 0, 0)
+::sprFLDevcom <- newSprite("contrib/frostlands/gfx/obj/kelvinscarf.png", 16, 16, 0, 0, 0, 0)
+::sprFLBounce <- newSprite("contrib/frostlands/gfx/obj/fl-bouncebox.png", 16, 16, 0, 0, 0, 0)
 
 ::sprHealthFL <- newSprite("contrib/frostlands/gfx/fl-health.png", 16, 16, 0, 0, 0, 0)
 ::sprEnergyFl <- newSprite("contrib/frostlands/gfx/fl-energy.png", 16, 16, 0, 0, 0, 0)
@@ -135,7 +136,8 @@ print("Loading Frostlands overhauled PT2")
 	sprColorBlock = sprColorBlockFL
 	sprLevels = sprnewicons
 	sprCheckBell = sprBellfl
-	sprKelvinScarf = sprDevcom
+	sprKelvinScarf = sprFLDevcom
+	sprBoxBounce = sprFLBounce
 	
 	if(never) {
 		sprCoin = sprCoinN1
