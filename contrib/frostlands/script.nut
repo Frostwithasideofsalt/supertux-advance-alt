@@ -77,7 +77,7 @@ print("Loading Frostlands overhauled PT2")
 ::sprOceanPants <- newSprite("contrib/frostlands/gfx/NPC/OceanPants.png", 20, 53, 0, 0, 10, 53)
 ::sprCone <- newSprite("contrib/frostlands/gfx/NPC/Cone.png", 37, 51, 0, 0, 16, 51)
 ::spribot <- newSprite("contrib/frostlands/gfx/NPC/itembot.png", 37, 51, 0, 0, 16, 51)
-::sprfeesh <- newSprite("contrib/frostlands/gfx/NPC/lfish.png", 63, 44, 0, 0, 63, 22)
+::sprfeesh <- newSprite("contrib/frostlands/gfx/NPC/lfish.png", 63, 44, 0, 0, 31, 44)
 
 //OG style
 ::sprFlowerFireOG <- newSprite("contrib/frostlands/gfx/obj/fl-fireflower.png", 16, 16, 0, 0, 8, 8)
