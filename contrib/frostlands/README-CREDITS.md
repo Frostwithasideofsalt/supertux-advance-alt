@@ -12,6 +12,8 @@ Freezing point and Down you go! music; https://sourceforge.net/projects/extremet
 
 hydropower's music music; https://supertuxkart.net/Main_Page
 
-map music; = by "WALL BALLER" (Yes, that is what the composer wished to be credited as.)
+map theme; https://www.supertux.org/
+
+salcont.ogg ; = by "WALL BALLER" (Yes, that is what the composer wished to be credited as, new version of the song will as the map music at some point)
 
 ## everthing not listed here was either created by me, FrostC or was from the base game.
